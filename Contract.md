@@ -21,6 +21,9 @@ Each week, the necessary deliverables for the week will be determined by the ful
 ### 2.Time Commitment
 Each member is expected to work no less than 2 and no more than 6 hours (you can work 24 * 7 if you want) per week on the project. If a deliverable ends up taking more time, the rest of the team should be pulled in to assist with the unforeseen complication.
 
+### 3.conflict resolution
+All conflicts within the team will (probably) be decided by convincing other people with good enough reasons.
+
 
 ## Signatures
 Mengchen Qiu(mqiu3) agree to the terms of contract.
