@@ -23,3 +23,4 @@ Each member is expected to work no less than 2 and no more than 6 hours (you can
 
 
 ## Signatures
+Mengchen Qiu(mqiu3) agree to the terms of contract.
