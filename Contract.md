@@ -2,7 +2,7 @@
 
 ## Team Contract (mqiu3-daweix3-hanbog2-lurenw2)
 
-##Communication
+## Communication
 
 ### 1.Team Meetings 
 Our team will meet at least once a week with flexiable schedule using wechat to talk about the process.
