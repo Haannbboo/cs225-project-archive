@@ -24,3 +24,6 @@ Each member is expected to work no less than 2 and no more than 6 hours (you can
 
 ## Signatures
 Mengchen Qiu(mqiu3) agree to the terms of contract.
+Dawei Xiong(daweix3) agree to the terms of contract.
+Hanbo Guo(hanbog2) agree to the terms of contract.
+Luren Wang(lurenw2) agree to the terms of contract.
