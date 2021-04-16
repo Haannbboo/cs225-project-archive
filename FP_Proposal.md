@@ -15,7 +15,8 @@ The data downloaded from OSM is in .shp format, which has been converted to a re
 Graph Algorithms
 Apart from Dijkstra algorithm, we want to implement other algorithms including A*, D*, LPA*, and D* lite. 
 
-Timeline As a team
+##Timeline As a team
+
 We will handed in our final project proposal on april 9th, and then we will have a meeting discussing the details of the final project, such as what is the structure of the final project, what is the hierarchical structure of different class (basically design our Doxygen) and design class that implement which function. The input of each function and output should be clarified as well. 4
 Then in the Mid-Project Checkin period, we will assign the work to each of the teammates to develop and have two meeting per week to make check with the development and if we have any problems. 
 In the final part, we will submit our code and combine our code together and debug. 
