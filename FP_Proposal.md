@@ -4,7 +4,7 @@ CS 225 Final Project Proposal
 Path Planning
 
 
-#Leading Question
+##Leading Question
 
 We want to solve the path planning problem through graph algorithms. Path planning is an important tool for network routing, video games, gene sequencing, navigation etc. The basic idea is to find the shortest, or the most optimal, route from A to B.  In path planning, graph theory plays an important role as we need to convert a real world question into a mathematical model that can be processed by computer programs. Each place will be a node and each node is connected to by an edge. We will find a dataset that depicts that map of a certain place and we will implement different path planning algorithms. Besides, we will find out that which of these algorithms has the best performance among different cases. 
 
