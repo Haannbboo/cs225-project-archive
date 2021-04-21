@@ -1,13 +1,14 @@
-#include <vector>
 
+struct Point {
+    unsigned x;
+    unsigned y;
 
-class Point {
-    private:
-        double x;
-        double y;
-    
-    public:
-        Point();
-        Point(double x, double y);
+    Point(): Point(0, 0) {  }
+
+    Point(unsigned x, unsigned y): Point(x, y) {  }
+
+    bool operator==(const Point &other) const {
+        return (x == other.x && y == other.y);
+    }
         
 }
