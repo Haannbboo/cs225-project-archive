@@ -1,14 +1,16 @@
-
+#include <iostream>
+#include <vector>
+using namespace std;
 struct Point {
     unsigned x;
     unsigned y;
+    string name; //the name of the place
+    double sestimate; //the best estimate of distance to this point
+    vector<Point*> connectedpts; //a vector of points connected to this point
+    Point();
 
-    Point(): Point(0, 0) {  }
+    Point(unsigned x_, unsigned y_);
 
-    Point(unsigned x, unsigned y): Point(x, y) {  }
-
-    bool operator==(const Point &other) const {
-        return (x == other.x && y == other.y);
-    }
+    bool operator==(const Point &other) const;
         
-}
+};
