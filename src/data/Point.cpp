@@ -1,5 +1,5 @@
 #include "Point.h"
-#include <math>
+#include <cmath>
 
 Point:: Point(){
     this->x = 0;
@@ -15,7 +15,7 @@ bool Point::operator==(const Point &other) const{
     return (x == other.x && y == other.y);
 }
 
-double Point::distance(Point other) {
+double Point::distance(Point* other) {
     // Euclidean distance
-    return sqrt((x - other.x) * (x - other.x) + (y - other.y) * (y - other.y));
+    return sqrt((x*1000000 - other->x*1000000) * (x*1000000 - other->x*1000000) + (y*1000000 - other->y*1000000) * (y*1000000 - other->y*1000000));
 }

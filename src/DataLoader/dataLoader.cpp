@@ -1,4 +1,4 @@
-#include "data.h"
+#include "dataLoader.h"
 
 
 std::string SubstrFromPosToDel(const std::string& str, size_t* idx_ptr) {
@@ -40,7 +40,7 @@ Line& Line::operator<<(const std::string& line) {
 
 std::vector<Line> LinesFromCsvFile(const std::string& file_name) {
 
-    std::ifstream ifs{file_name};
+    std::ifstream ifs(file_name);
     std::vector<Line> lines;
     std::string line;
     std::getline(ifs, line);
@@ -49,6 +49,7 @@ std::vector<Line> LinesFromCsvFile(const std::string& file_name) {
         m << line;
         lines.push_back(m);
     }
+    ifs.close();
     return lines;
 }
 

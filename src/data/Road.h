@@ -1,9 +1,10 @@
 #include "Point.h"
-#include "../DataLoader/data.h"
+#include "../DataLoader/dataLoader.h"
 #include <map>
+#pragma once
 
 class Road {
-    private:
+    public:
         int level_;
         int length_;
         bool oneway_;
@@ -13,7 +14,7 @@ class Road {
             {"secondary", 2},
             {"tertiary", 3},
             {"trunk", 4},
-        }
+        };
         std::pair<Point*, Point*> direction_;
         std::vector<Point*> cordinates_;
         Point* start_;
@@ -22,9 +23,10 @@ class Road {
         Road();
         ~Road();
 
-    private:
         //  Line to Road
         void loadLine(const Line& line);
+
+    private:
         std::vector<Point*> split_geometry(std::string geometry);
 };
 
