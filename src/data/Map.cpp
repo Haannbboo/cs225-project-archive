@@ -6,9 +6,10 @@
 
 Map::Map() {
     raw_data = LinesFromCsvFile("shape.csv");
+    translateRawData();
 }
 
-void Map::cleanRawData() {
+void Map::translateRawData() {
     if (raw_data.empty()) {
         return;
     }

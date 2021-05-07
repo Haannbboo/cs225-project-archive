@@ -13,5 +13,5 @@ class Map {
         std::vector<std::vector<int>> convertToAdjacencyMatrix();
         std::vector<Point> convertToPoints();
     private:
-        void cleanRawData();  // O(n)
+        void translateRawData();  // O(n)
 };

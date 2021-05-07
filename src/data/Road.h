@@ -6,6 +6,8 @@ class Road {
     private:
         int level_;
         int length_;
+        bool oneway_;
+        bool bridge_;
         std::map<std::string, int> levelMapping = {
             {"primary", 1},
             {"secondary", 2},
@@ -14,8 +16,8 @@ class Road {
         }
         std::pair<Point*, Point*> direction_;
         std::vector<Point*> cordinates_;
-        Point* start;
-        Point* end;
+        Point* start_;
+        Point* end_;
     public:
         Road();
         ~Road();
