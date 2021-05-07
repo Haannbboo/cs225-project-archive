@@ -2,7 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
-
+#pragma onces
 
 
 class Line {

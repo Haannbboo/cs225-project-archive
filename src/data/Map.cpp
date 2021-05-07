@@ -1,8 +1,21 @@
 #include "Map.h"
 
-#include <DataFrame>
 
+//  Load data from CSV using DataLoader
+//  Clean and load data to vector<Road*>
 
-void Map::readFile() {
-    df.read(fpath);
+Map::Map() {
+    raw_data = LinesFromCsvFile("shape.csv");
+}
+
+void Map::cleanRawData() {
+    if (raw_data.empty()) {
+        return;
+    }
+
+    for (auto line: raw_data) {
+        Road* road = new Road();
+        road.loadLine(line);
+        roads.push_back(road);
+    }
 }

@@ -1,18 +1,17 @@
 #include "Road.h"
+#include "../DataLoader/data"
 
 
 class Map {
     private: 
-        std::string fpath;
         std::vector<Road*> roads;
-        MyDataFrame df;
+        std::vector<Line> raw_data;
     public: 
         Map();
-        Map(std::string path);
         ~Map();
         
         std::vector<std::vector<int>> convertToAdjacencyMatrix();
         std::vector<Point> convertToPoints();
-
-        void readFile();
-}
+    private:
+        void cleanRawData();  // O(n)
+};

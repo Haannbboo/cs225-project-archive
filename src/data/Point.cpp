@@ -5,9 +5,9 @@ Point:: Point(){
     this->y = 0;
 }
 
-Point::Point(unsigned x_, unsigned y_){
-    this->x = x_;
-    this->y = y_;
+Point::Point(double x, double y){
+    this->x = x;
+    this->y = y;
 }
 
 bool Point::operator==(const Point &other) const{

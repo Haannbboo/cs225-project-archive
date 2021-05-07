@@ -1,0 +1,14 @@
+data : main.o datacc.o datah.o 
+ g++ main.o datacc.o datah.o -o data
+
+main.o : main.cc
+ g++ -c main.cc -o main.o
+ 
+datacc.o : data.cc
+ g++ -c data.cc -o datacc.o
+
+datah.o : data.h
+ g++ -c data.h -o datah.o
+
+clean:
+ rm *.o data
