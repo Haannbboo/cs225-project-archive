@@ -121,7 +121,7 @@ bool Astar::isCanreach( const NewPoint *point, const NewPoint *target, bool isIg
    
 std::vector<NewPoint *> Astar::getSurroundPoints( const NewPoint *point, bool isIgnoreCorner) const 
 { 
-     std::vector<NewPoint *> surroundPoints; 
+     std::vector<NewPoint*> surroundPoints; 
      for ( unsigned long x=point->x-1;x<=point->x+1;x++) 
          for ( unsigned long y=point->y-1;y<=point->y+1;y++) 
              if (isCanreach(point, new NewPoint(x,y),isIgnoreCorner)) 
