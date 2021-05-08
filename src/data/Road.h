@@ -15,7 +15,6 @@ class Road {
             {"tertiary", 3},
             {"trunk", 4},
         };
-        std::pair<Point*, Point*> direction_;
         std::vector<Point*> cordinates_;
         Point* start_;
         Point* end_;
@@ -26,8 +25,13 @@ class Road {
         //  Line to Road
         void loadLine(const Line& line);
 
+        // for testing
+        void geometry_to_cordiantes(std::string geometry);
+
     private:
-        std::vector<Point*> split_geometry(std::string geometry);
+        void clean();
+        void delete_ptr(Point* const ptr);
+        
 };
 
 

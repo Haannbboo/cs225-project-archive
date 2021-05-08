@@ -9,12 +9,13 @@ int main() {
     
     Line line = data[1];
 
-    std::string geometry = "LINESTRING ()";
+    std::string geometry = "LINESTRING (116.315387 39.9062149, 116.315548 39.9065059, 116.3156185 39.9066426, 116.31561 39.909336, 116.3156094 39.9095281, 116.3156087 39.9097712)";
     std::cout << geometry << std::endl;
+
     size_t start = geometry.find("(") + 1;
     std::cout << start << std::endl;
     std::cout << geometry.length() << std::endl;
-    std::string geoInfo = geometry.substr(start, geometry.length() - start - 2);
+    std::string geoInfo = geometry.substr(start, geometry.length() - start - 1);
     std::cout << geoInfo << std::endl;
 
     size_t comma_index = geoInfo.find(",");
@@ -25,6 +26,7 @@ int main() {
     geoInfo.erase(0, comma_index+2);
     std::cout << geoInfo << std::endl;
     */
+
 
     Map m;
 

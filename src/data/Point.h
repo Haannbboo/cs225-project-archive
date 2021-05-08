@@ -17,5 +17,6 @@ struct Point {
     double distance(Point* other);
 
     std::vector<Point*> adjacent(Point* other);
+    void setNewCords(double x, double y);
         
 };

@@ -2,7 +2,19 @@
 
 
 Road::Road() {
+    // they need to be initialized for clean()
+    start_ = nullptr;
+    end_ = nullptr;
+}
 
+Road::~Road() {
+    clean();
+}
+
+void Road::clean() {
+    delete start_;
+    delete end_;
+    cordinates_.clear();
 }
 
 void Road::loadLine(const Line& line) {
@@ -15,7 +27,7 @@ void Road::loadLine(const Line& line) {
     
     // cordinates_
     std::string geometry = line.geometry;
-    cordinates_ = split_geometry(geometry);
+    geometry_to_cordiantes(geometry);
 
     // start_ and end_
     if (!cordinates_.empty()) {
@@ -33,9 +45,6 @@ void Road::loadLine(const Line& line) {
         }
     }
 
-    // direction
-    direction_ = std::make_pair(start_, end_);
-
     // oneway
     oneway_ = line.oneway;
 
@@ -45,13 +54,17 @@ void Road::loadLine(const Line& line) {
 }
 
 
-std::vector<Point*> Road::split_geometry(std::string geometry) {
-    std::vector<Point*> cordinates;
+void Road::geometry_to_cordiantes(std::string geometry) {
+    if (!cordinates_.empty()) {
+        cordinates_.clear();
+    }
 
     size_t start = geometry.find("(") + 1;
-    int infoLength = geometry.length() - start - 2;
+    int infoLength = geometry.length() - start - 1;
+    // when geometry="LINESTRING ()", start gives index of )
+    // which is inaccurate, so the if below kills this possibility
     if (infoLength <= 0) {  // empty geometry entry
-        return cordinates;
+        return;
     }
     std::string geoInfo = geometry.substr(start, infoLength);
 
@@ -66,7 +79,7 @@ std::vector<Point*> Road::split_geometry(std::string geometry) {
         double y = std::stod(geoInfo.substr(y_start_index, comma_index - y_start_index));
 
         Point* point = new Point(x, y);
-        cordinates.push_back(point);
+        cordinates_.push_back(point);
 
         if (comma_index == geoInfo.length()) {
             geoInfo = "";  // break condition
@@ -74,5 +87,4 @@ std::vector<Point*> Road::split_geometry(std::string geometry) {
             geoInfo.erase(0, comma_index+2);
         }
     }
-    return cordinates;
 }

@@ -20,6 +20,30 @@ double Point::distance(Point* other) {
     // return sqrt((x*1000000 - other->x*1000000) * (x*1000000 - other->x*1000000) + (y*1000000 - other->y*1000000) * (y*1000000 - other->y*1000000));
 
     // Great-Circle distance
-    double R = 6371000.0;  // radius of earth
-    return R * acos(cos(y) * cos(other->y) * cos(other->x - x) + sin(y) * sin(other->y));
+    // double R = 6371000.0;  // radius of earth in meters
+    // return R * acos(cos(y) * cos(other->y) * cos(other->x - x) + sin(y) * sin(other->y));
+
+    // Haversine
+    double R = 6371000.0;  // radius of earth in meters
+
+    double x2 = other->x;
+    double y2 = other->y;
+
+    double dx = (x2 - x) * M_PI / 180.00;
+    double dy = (y2 - y) * M_PI / 180.00;
+
+    // convert to radians
+    double x1 = x * M_PI / 180.00;
+    double x3 = x2 * M_PI / 180.00;
+
+    // apply Haversine formula
+    double a = pow(sin(dx / 2), 2) + pow(sin(dy / 2), 2) * cos(x1) * cos(x3);
+    return 2 * asin(sqrt(a)) * R;
+}
+
+
+void Point::setNewCords(double x, double y) {
+    // used for unit testing
+    this->x = x;
+    this->y = y;
 }
