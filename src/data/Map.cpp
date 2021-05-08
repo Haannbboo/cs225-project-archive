@@ -2,11 +2,12 @@
 #include "Road.h"
 
 
-//  Load data from CSV using DataLoader
-//  Clean and load data to vector<Road*>
-
 Map::Map() {
-    raw_data = LinesFromCsvFile("./DataLoader/shape.csv");
+
+}
+
+Map::Map(std::string filepath) {
+    raw_data = LinesFromCsvFile(filepath);
     std::cout << "Finish reading raw data of size: " << raw_data.size() << std::endl;
     translateRawData();
 }
@@ -32,11 +33,12 @@ void Map::translateRawData() {
             std::pair<double, double> xy;
             xy.first = p->x;
             xy.second = p->y;
-            if (pointsCreated.find(xy) != pointsCreated.end()) {
+            if (pointsMap.find(xy) != pointsMap.end()) {
                 // when (x, y) is an old point
-                road->cordinates_[i] = pointsCreated.at(xy);
+                road->cordinates_[i] = pointsMap.at(xy);
             } else {
-                pointsCreated[xy] = p;
+                pointsMap[xy] = p;
+                points.push_back(p);
             }
         }
         road->start_ = road->cordinates_[0];
@@ -72,4 +74,21 @@ std::vector<Road*> Map::incidentRoads(Point* point) {
     } else {
         return vertices.at(point);
     }
+}
+
+void Map::insertPoint(double x, double y) {
+    // check if (x, y) already exists
+    std::pair<double, double> xy;
+    xy.first = x;
+    xy.second = y;
+    if (pointsMap.find(xy) != pointsMap.end()) {
+        return;
+    }
+
+    Point* point = new Point(x, y);
+    std::vector<Road*> r;
+    vertices[point] = r;
+
+    points.push_back(point);
+    pointsMap[xy] = point;
 }

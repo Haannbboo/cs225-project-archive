@@ -77,3 +77,8 @@ TEST_CASE("Test Road - loadLine") {
 
     REQUIRE(almostEqual(r1->length_, 800));
 }
+
+TEST_CASE("Test Map - insertPoint") {
+    Map m;
+    
+}
