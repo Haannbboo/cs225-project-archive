@@ -33,11 +33,11 @@ double Point::distance(Point* other) {
     double dy = (y2 - y) * M_PI / 180.00;
 
     // convert to radians
-    double x1 = x * M_PI / 180.00;
-    double x3 = x2 * M_PI / 180.00;
+    double y1 = y * M_PI / 180.00;
+    double y3 = y2 * M_PI / 180.00;
 
     // apply Haversine formula
-    double a = pow(sin(dx / 2), 2) + pow(sin(dy / 2), 2) * cos(x1) * cos(x3);
+    double a = pow(sin(dy / 2), 2) + pow(sin(dx / 2), 2) * cos(y1) * cos(y3);
     return 2 * asin(sqrt(a)) * R;
 }
 

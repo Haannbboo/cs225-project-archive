@@ -11,16 +11,16 @@ bool almostEqual(double x, double target) {
 
 TEST_CASE("Test Point - distance") {
     // cordinates and distacne info from Google Map
-    Point* p1 = new Point(39.907637673875094, 116.39943696144262);
-    Point* p2 = new Point(39.90059254163761, 116.39960862282466);
+    Point* p1 = new Point(116.39943696144262, 39.907637673875094);
+    Point* p2 = new Point(116.39960862282466, 39.90059254163761);
 
     double distance = p1->distance(p2);
 
     REQUIRE( almostEqual(distance, 850) );  // actual distance is 850m
 
     // two close points
-    p1->setNewCords(39.91847555732769, 116.35651420148747);
-    p2->setNewCords(39.91855345474758, 116.35723854503502);
+    p1->setNewCords(116.35651420148747, 39.91847555732769);
+    p2->setNewCords(116.35723854503502, 39.91855345474758);
     distance = p1->distance(p2);
 
     REQUIRE( almostEqual(distance, 63) );
