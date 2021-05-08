@@ -5,6 +5,7 @@
 
 class Road {
     public:
+        int id_;
         int level_;
         int length_;
         bool oneway_;
@@ -15,6 +16,8 @@ class Road {
             {"tertiary", 3},
             {"trunk", 4},
         };
+    public:
+        // the three below have to be public for pointsCreated in Map
         std::vector<Point*> cordinates_;
         Point* start_;
         Point* end_;

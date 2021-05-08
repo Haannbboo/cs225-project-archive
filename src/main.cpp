@@ -39,6 +39,10 @@ int main() {
     << "level_ = " << road->level_ << "\n"
     << "length_ = " << road->length_ << "\n"
     << "oneway_ = " << road->oneway_ << std::endl;
+
+    std::cout << m.vertices.size() << std::endl;
+
+    /*
     std::vector<std::vector<int>> maze={ 
          {1,1,1,1,1,1,1,1,1,1,1,1}, 
          {1,0,0,1,1,0,1,0,0,0,0,1}, 
@@ -55,6 +59,8 @@ int main() {
      NewPoint end(6,10); 
      astar.GetPath(start,end,false ); 
      astar.print_path();
+    */
+
     return 0;
 }
 

@@ -18,6 +18,9 @@ void Road::clean() {
 }
 
 void Road::loadLine(const Line& line) {
+    // id_
+    id_ = std::stoi(line.osm_id);
+    
     // level_
     try {
         level_ = levelMapping.at(line.type);
