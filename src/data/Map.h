@@ -27,6 +27,10 @@ class Map {
         // they are mainly used for testing
         void insertPoint(double x, double y);
 
+        void insertRoad(Point* p1, Point* p2, Road* road);
+
+        bool areAdjacent(Point* p1, Point* p2);
+
     private:
         void translateRawData();  // O(n)
         void loadVertex(Road* road);
