@@ -79,6 +79,17 @@ TEST_CASE("Test Road - loadLine") {
 }
 
 TEST_CASE("Test Map - insertPoint") {
+    // Assuming everything is perfect for vertices and pointsMap in Map
     Map m;
+    double x = 101.2345;
+    double y = 35.0123;
+
+    m.insertPoint(x, y);
+    REQUIRE( m.points.size() == 1 );
     
+    m.insertPoint(x, y);
+    REQUIRE( m.points.size() == 1 );
+
+    m.insertPoint(1234565.1234, 0.0001234);
+    REQUIRE( m.points.size() == 2 );
 }
