@@ -1,0 +1,5 @@
+
+*.d
+*.o
+src/test
+src/main
