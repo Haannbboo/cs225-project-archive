@@ -26,7 +26,8 @@ class Astar {
 
 public : 
      void InitAstar(std::vector<std::vector<int>> &_maze); 
-     std::list<NewPoint *> GetPath(NewPoint &startPoint,NewPoint &endPoint, bool isIgnoreCorner); 
+     void GetPath(NewPoint &startPoint,NewPoint &endPoint, bool isIgnoreCorner); 
+     void print_path();
 
 private : 
      NewPoint *findPath(NewPoint &startPoint,NewPoint &endPoint, bool isIgnoreCorner); 
@@ -36,10 +37,12 @@ private :
      NewPoint *getLeastFpoint();
      int calcG(NewPoint *temp_start,NewPoint *point); 
      int calcH(NewPoint *point,NewPoint *end); 
-     int calcF(NewPoint *point); 
+     int calcF(NewPoint *point);
+  
 
      std::vector<std::vector<int>> maze; 
      std::list<NewPoint*> openList; 
      std::list<NewPoint*> closeList;
+     std::list<NewPoint*> path_;
 };
     

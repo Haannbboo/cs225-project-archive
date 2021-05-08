@@ -8,18 +8,11 @@
 using namespace std;
 class algorithm{
     public:
+    void InitAstar(std::vector<std::vector<int>> &_maze); 
     void Dijkstra(Point* start, Point* destination);
-    void Astart(Point* start, Point* destination);
-    void Dstar(Point* start, Point* destination);
     Point* findnearstpoint(Point* a); //find and return the nearst point to a point
     double distance(Point* a, Point* b); //the distance between two points
-
-    // function for Astar
-    bool IsInOpen_Set(Point* check);
-    bool IsInClose_Set(Point* check);
-    bool IsStartPoint(Point* check);
-    bool IsEndPoint(Point* check);
-    Point* highest_priority(std::vector<Point*> open_set);
+    void print_path();
 
     private:
     Point* start_;

@@ -53,10 +53,8 @@ int main() {
      astar.InitAstar(maze); 
      NewPoint start(1,1); 
      NewPoint end(6,10); 
-     list<NewPoint *> path=astar.GetPath(start,end,false ); 
-     for ( auto &p:path) {
-         cout<< '(' <<p->x<< ',' <<p->y<< ')' <<endl; 
-     }
+     astar.GetPath(start,end,false ); 
+     astar.print_path();
     return 0;
 }
 

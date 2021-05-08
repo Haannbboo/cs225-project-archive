@@ -77,16 +77,15 @@ NewPoint *Astar::findPath(NewPoint &startPoint,NewPoint &endPoint, bool isIgnore
      return NULL; 
 } 
 
-std::list<NewPoint*> Astar::GetPath(NewPoint &startPoint,NewPoint &endPoint, bool isIgnoreCorner) 
+void Astar::GetPath(NewPoint &startPoint,NewPoint &endPoint, bool isIgnoreCorner) 
 { 
      NewPoint *result=findPath(startPoint,endPoint,isIgnoreCorner); 
-     std::list<NewPoint*> path; 
      while (result) 
      { 
-         path.push_front(result); 
+         path_.push_front(result); 
          result=result->parent; 
-     } 
-     return path; 
+     }
+     return;
 } 
 
 NewPoint *Astar::isInList( const std::list<NewPoint *> &list, const NewPoint *point) const 
@@ -129,3 +128,9 @@ std::vector<NewPoint *> Astar::getSurroundPoints( const NewPoint *point, bool is
                  surroundPoints.push_back( new NewPoint(x,y)); 
      return surroundPoints; 
 } 
+
+void Astar::print_path() {
+    for ( auto &p:path_) {
+         std::cout<< '(' <<p->x<< ',' <<p->y<< ')' <<std::endl; 
+    }
+}
