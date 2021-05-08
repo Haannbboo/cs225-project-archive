@@ -1,9 +1,19 @@
 #include <math.h> 
 #include "Astar.h"
 #include <stdlib.h> 
+/***
+Astar::Astar(Point* A, Point* B, std::string filename) {
+    start_ = A;
+    destination_ = B;
+    map_ = new Map m(filename);
+}
+***/  
 
-   
 
+
+
+
+/***
 void Astar::InitAstar(std::vector<std::vector<int>> &_maze) { 
      maze=_maze; 
 } 
@@ -25,8 +35,21 @@ int Astar::calcF(NewPoint *point)
      return point->G+point->H; 
 } 
 
-   
+***/
+double Astar::calcG(Point* A) {
+    
+}
 
+double Astar::calcH(Point* A) {
+    return destination_->distance(A);
+}; // this is equavilent to calculate distance between A and B;
+
+double Astar::calcF(Point* point) 
+{
+    return calcG(start_, point) + calcH(point);
+}
+   
+/***
 NewPoint *Astar::getLeastFpoint() 
 { 
      if (!openList.empty()) 
@@ -134,3 +157,4 @@ void Astar::print_path() {
          std::cout<< '(' <<p->x<< ',' <<p->y<< ')' <<std::endl; 
     }
 }
+***/

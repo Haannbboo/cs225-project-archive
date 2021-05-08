@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
-//#include "../data/Point.h"
-//#include "../data/Road.h"
+#include "../data/Point.h"
+#include "../data/Road.h"
+#include "../data/Map.h"
 
 #pragma once 
 
@@ -9,8 +10,27 @@
 
 #include <list> 
 
-   
+class Astar {
+    public:
+    Astar();
+    Astar(Point* start, Point* des, std::string filename);
 
+    double calcG(Point* A, Point* B);
+    double calcH(Point* A);
+    double calcF(Point* A);
+
+
+    private:
+    std::list<Point*> openList; 
+    std::list<Point*> closeList;
+    std::list<Point*> path_;
+    Map map_;
+    Point* start_;
+    Point* destination_;
+
+    //get surrounded points 
+};   
+/***
 const int kCost1=10;
 const int kCost2=14;
 
@@ -39,10 +59,9 @@ private :
      int calcH(NewPoint *point,NewPoint *end); 
      int calcF(NewPoint *point);
   
-
      std::vector<std::vector<int>> maze; 
      std::list<NewPoint*> openList; 
      std::list<NewPoint*> closeList;
      std::list<NewPoint*> path_;
 };
-    
+***/
