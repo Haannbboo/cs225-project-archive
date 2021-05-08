@@ -15,5 +15,7 @@ struct Point {
     bool operator==(const Point &other) const;
 
     double distance(Point* other);
+
+    std::vector<Point*> adjacent(Point* other);
         
 };

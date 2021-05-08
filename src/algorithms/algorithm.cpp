@@ -1,4 +1,9 @@
 #include "algorithm.h"
+#include <vector>
+#include <cmath>
+#include <iostream>
+#include <functional>
+#include <utility>
 
 void algorithm::Dijkstra(Point* start, Point* destination){
     Point* cur;
@@ -30,3 +35,49 @@ Point* algorithm::findnearstpoint(Point* a){
     return minp;
 }
 
+
+void Astar(Point* start_, Point* des_) {
+    // Initialize two empty sets
+    std::vector<Point*> open_set, close_set;
+    // Add the startpoint to the openset and set the priority to 0;
+    //std::pair<Point*, double>  start = std::make_pair(start_,0.0);
+    open_set.push_back(start_);
+    if (!open_set.empty()) {
+        // if n is the destination
+        Point* highest = highest_priority(open_set);
+        if (IsEndPoint(highest)) {
+            for (auto i : open_set) {
+                path_.push_back(i);
+            }
+        } else {
+            close_set.push_back(highest);
+            //open_set.remove(highest); delete highests from open_set
+            for (auto i : highest->adjacent()) {
+                if (IsInClose_Set(i)) continue;
+                else {
+                    // set i as the parent node of highest;
+                    // calculate the priority of i;
+                    // add highest into the open set
+                }
+            }
+        }
+    }
+};
+
+void Dstar(Point* start_, Point* end_) {
+    std::vector<Point*> open_set, close_set;
+}
+
+
+
+
+
+
+
+
+
+bool IsEndPoint(Point* check);
+bool IsStartPoint(Point* check);
+bool IsInClose_Set(Point* check);
+bool IsInOpen_Set(Point* check);
+Point* highest_priority(std::vector<Point*> check);
