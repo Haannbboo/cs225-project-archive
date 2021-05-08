@@ -28,7 +28,7 @@ int main() {
 
     Map m;
 
-    Road* road = m.roads[0];
+    Road* road = m.roads[1];
 
     std::cout
     << "level_ = " << road->level_ << "\n"
