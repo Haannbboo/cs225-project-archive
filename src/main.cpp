@@ -1,5 +1,8 @@
 #include "data/Map.h"
 #include <iostream>
+#include "algorithms/Astar.h"
+using namespace std;
+
 
 
 int main() {
@@ -36,8 +39,24 @@ int main() {
     << "level_ = " << road->level_ << "\n"
     << "length_ = " << road->length_ << "\n"
     << "oneway_ = " << road->oneway_ << std::endl;
-
-
+    std::vector<std::vector<int>> maze={ 
+         {1,1,1,1,1,1,1,1,1,1,1,1}, 
+         {1,0,0,1,1,0,1,0,0,0,0,1}, 
+         {1,0,0,1,1,0,0,0,0,0,0,1}, 
+         {1,0,0,0,0,0,1,0,0,1,1,1}, 
+         {1,1,1,0,0,0,0,0,1,1,0,1}, 
+         {1,1,0,1,0,0,0,0,0,0,0,1}, 
+         {1,0,1,0,0,0,0,1,0,0,0,1}, 
+         {1,1,1,1,1,1,1,1,1,1,1,1} 
+     }; 
+     Astar astar; 
+     astar.InitAstar(maze); 
+     NewPoint start(1,1); 
+     NewPoint end(6,10); 
+     list<NewPoint *> path=astar.GetPath(start,end,false ); 
+     for ( auto &p:path) {
+         cout<< '(' <<p->x<< ',' <<p->y<< ')' <<endl; 
+     }
     return 0;
 }
 

@@ -22,6 +22,7 @@ OBJS = main.o
 # Add all `colorPicker` and `imageTraversal`s:
 CPP_FILES += $(wildcard data/*.cpp)
 CPP_FILES += $(wildcard DataLoader/*.cpp)
+CPP_FILES += $(wildcard algorithms/*.cpp)
 OBJS += $(CPP_FILES:.cpp=.o)
 
 
@@ -30,8 +31,8 @@ CXX = clang++
 LD = clang++
 OBJS_DIR = .objs
 
-# Add standard CS 225 object files
-OBJS += data/Map.o data/Point.o data/Road.o DataLoader/dataLoader.o
+# Add standard final projectz files
+OBJS += data/Map.o data/Point.o data/Road.o DataLoader/dataLoader.o algorithms/Astar.o
 
 # -MMD and -MP asks clang++ to generate a .d file listing the headers used in the source code for use in the Make process.
 #   -MMD: "Write a depfile containing user headers"
@@ -62,6 +63,7 @@ $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p $(OBJS_DIR)/data
 	@mkdir -p $(OBJS_DIR)/DataLoader
+	@mkdir -p $(OBJS_DIR)/algorithms
 	@mkdir -p $(OBJS_DIR)/tests
 	@mkdir -p $(OBJS_DIR)/cs225/catch
 
@@ -89,6 +91,7 @@ $(TEST): output_msg $(patsubst %.o, $(OBJS_DIR)/%.o, $(OBJS_TEST))
 -include $(OBJS_DIR)/*.d
 -include $(OBJS_DIR)/data/*.d
 -include $(OBJS_DIR)/DataLoader/*.d
+-include $(OBJS_DIR)/algorithms/*.d
 -include $(OBJS_DIR)/tests/*.d
 -include $(OBJS_DIR)/cs225/catch/*.d
 

@@ -1,10 +1,11 @@
-#include "algorithm.h"
+//#include "algorithm.h"
 #include <vector>
 #include <cmath>
 #include <iostream>
 #include <functional>
 #include <utility>
 
+/***
 void algorithm::Dijkstra(Point* start, Point* destination){
     Point* cur;
     vector<string> road;
@@ -75,9 +76,9 @@ void Dstar(Point* start_, Point* end_) {
 
 
 
-
 bool IsEndPoint(Point* check);
 bool IsStartPoint(Point* check);
 bool IsInClose_Set(Point* check);
 bool IsInOpen_Set(Point* check);
 Point* highest_priority(std::vector<Point*> check);
+***/
