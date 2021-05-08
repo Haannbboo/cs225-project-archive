@@ -3,11 +3,12 @@
 #include <>
 
 
-//  Load data from CSV using DataLoader
-//  Clean and load data to vector<Road*>
-
 Map::Map() {
-    raw_data = LinesFromCsvFile("./DataLoader/shape.csv");
+
+}
+
+Map::Map(std::string filepath) {
+    raw_data = LinesFromCsvFile(filepath);
     std::cout << "Finish reading raw data of size: " << raw_data.size() << std::endl;
     translateRawData();
 }
@@ -33,11 +34,12 @@ void Map::translateRawData() {
             std::pair<double, double> xy;
             xy.first = p->x;
             xy.second = p->y;
-            if (pointsCreated.find(xy) != pointsCreated.end()) {
+            if (pointsMap.find(xy) != pointsMap.end()) {
                 // when (x, y) is an old point
-                road->cordinates_[i] = pointsCreated.at(xy);
+                road->cordinates_[i] = pointsMap.at(xy);
             } else {
-                pointsCreated[xy] = p;
+                pointsMap[xy] = p;
+                points.push_back(p);
             }
         }
         road->start_ = road->cordinates_[0];
@@ -73,4 +75,70 @@ std::vector<Road*> Map::incidentRoads(Point* point) {
     } else {
         return vertices.at(point);
     }
+}
+
+void Map::insertPoint(double x, double y) {
+    // check if (x, y) already exists
+    std::pair<double, double> xy;
+    xy.first = x;
+    xy.second = y;
+    if (pointsMap.find(xy) != pointsMap.end()) {
+        return;
+    }
+
+    Point* point = new Point(x, y);
+    std::vector<Road*> r;
+    vertices[point] = r;
+
+    points.push_back(point);
+    pointsMap[xy] = point;
+}
+
+void Map::insertRoad(Point* p1, Point* p2, Road* road) {
+    // check if p1 and p2 exist
+    if (vertices.find(p1) == vertices.end() || vertices.find(p2) == vertices.end()) {
+        return;
+    }
+
+    vertices.at(p1).push_back(road);
+    vertices.at(p2).push_back(road);
+
+    roads.push_back(road);
+    
+    if (road->start_ == nullptr && road->end_ == nullptr) {
+        // road is the same as edges in a simple graph
+        road->start_ = p1;
+        road->end_ = p2;
+        road->cordinates_.push_back(p1);
+        road->cordinates_.push_back(p2);
+    }
+
+}
+
+bool Map::areAdjacent(Point* p1, Point* p2) {
+    // check if p1 and p2 exist
+    if (vertices.find(p1) == vertices.end() || vertices.find(p2) == vertices.end()) {
+        std::cout << "One of p1 or p2 is not in the Map" << std::endl;
+        return false;
+    }
+
+    std::vector<Road*> r1 = vertices.at(p1);
+    std::vector<Road*> r2 = vertices.at(p2);
+    std::vector<Road*> r_small;
+    std::vector<Road*> r_big;
+    size_t minsize = std::min(r1.size(), r2.size());
+    if (r1.size() == minsize) {
+        r_small = r1;
+        r_big = r2;
+    } else {
+        r_small = r2;
+        r_big = r1;
+    }
+    for (size_t i = 0; i < r_small.size(); i++) {
+        if (std::find(r_big.begin(), r_big.end(), r_small[i]) != r_big.end()) {
+            return true;
+        }
+    }
+
+    return false;
 }

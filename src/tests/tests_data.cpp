@@ -77,3 +77,52 @@ TEST_CASE("Test Road - loadLine") {
 
     REQUIRE(almostEqual(r1->length_, 800));
 }
+
+TEST_CASE("Test Map - insertPoint") {
+    // Assuming everything is perfect for vertices and pointsMap in Map
+    Map m;
+    double x = 101.2345;
+    double y = 35.0123;
+
+    m.insertPoint(x, y);
+    REQUIRE( m.points.size() == 1 );
+    
+    m.insertPoint(x, y);
+    REQUIRE( m.points.size() == 1 );
+
+    m.insertPoint(1234565.1234, 0.0001234);
+    REQUIRE( m.points.size() == 2 );
+}
+
+TEST_CASE("Test Map - insertRoad") {
+    Map m;
+    m.insertPoint(100, 10);
+    m.insertPoint(101, 11);
+    m.insertPoint(102, 12);
+    m.insertPoint(103, 13);
+
+    Road* road = new Road();
+    m.insertRoad(m.points[0], m.points[1], road);
+    REQUIRE( road->start_ == m.points[0] );
+
+    delete road;
+}
+
+TEST_CASE("Test Map - areAdjacent") {
+    Map m;
+    m.insertPoint(100, 10);
+    m.insertPoint(101, 11);
+    m.insertPoint(102, 12);
+    m.insertPoint(103, 13);
+
+    Road* r1 = new Road();
+    m.insertRoad(m.points[0], m.points[1], r1);
+    REQUIRE( m.areAdjacent(m.points[0], m.points[1]) );
+
+    Road* r2 = new Road();
+    m.insertRoad(m.points[0], m.points[2], r2);
+    REQUIRE( m.areAdjacent(m.points[0], m.points[2]) );
+
+    delete r1;
+    delete r2;
+}

@@ -31,7 +31,7 @@ int main() {
     */
 
 
-    Map m;
+    Map m("./DataLoader/shape.csv");
 
     Road* road = m.roads[1];
 
@@ -39,8 +39,6 @@ int main() {
     << "level_ = " << road->level_ << "\n"
     << "length_ = " << road->length_ << "\n"
     << "oneway_ = " << road->oneway_ << std::endl;
-
-    std::cout << m.vertices.size() << std::endl;
 
     /*
     std::vector<std::vector<int>> maze={ 
