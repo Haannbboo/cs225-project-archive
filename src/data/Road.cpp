@@ -22,9 +22,9 @@ void Road::loadLine(const Line& line) {
     id_ = std::stoi(line.osm_id);
     
     // level_
-    try {
+    if (levelMapping.find(line.type) != levelMapping.end()) {
         level_ = levelMapping.at(line.type);
-    } catch (const std::out_of_range& oor) {
+    } else {
         level_ = 10;  // default value
     }
     

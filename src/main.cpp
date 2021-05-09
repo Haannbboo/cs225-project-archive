@@ -40,6 +40,11 @@ int main() {
     << "length_ = " << road->length_ << "\n"
     << "oneway_ = " << road->oneway_ << std::endl;
 
+    std::cout << "roads size = " << m.roads.size() << std::endl;
+    std::cout << "points size = " << m.points.size() << std::endl;
+    std::cout << "pointsMap size = " << m.pointsMap.size() << std::endl;
+    std::cout << "vertices size = " << m.vertices.size() << std::endl;
+
     /*
     std::vector<std::vector<int>> maze={ 
          {1,1,1,1,1,1,1,1,1,1,1,1}, 
