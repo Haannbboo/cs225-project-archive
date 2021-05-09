@@ -1,6 +1,6 @@
+
 #include <string>
 #include <vector>
-#include "Road.h"
 #pragma once
 
 struct Point {
@@ -19,6 +19,9 @@ struct Point {
 
     std::vector<Point*> adjacent(Point* other);
     void setNewCords(double x, double y);
-    Road* parent;
+    Point* parent;
+    double F;
+    double G;
+    double H;
         
 };

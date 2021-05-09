@@ -34,7 +34,6 @@ int main() {
     std::cout << geoInfo << std::endl;
     */
 
-    /*
     Map m("./DataLoader/shape.csv");
 
     Road* road = m.roads[2];
@@ -50,7 +49,6 @@ int main() {
     std::cout << "points size = " << m.points.size() << std::endl;
     std::cout << "pointsMap size = " << m.pointsMap.size() << std::endl;
     std::cout << "vertices size = " << m.vertices.size() << std::endl;
-    */
 
     Point* p1 = new Point(116.2998166, 39.9810686);
     // Point* p2 = new Point(116.3115702, 39.9746749); rdfz point
@@ -58,7 +56,7 @@ int main() {
     std::cout << p1->distance(p2) << std::endl;
 
 
-    Map* m = new Map("./DataLoader/shape.csv");
+    //Map* m = new Map("./DataLoader/shape.csv");
     /*
     double min = 100000;
     for (auto road: m->roads) {
@@ -68,12 +66,12 @@ int main() {
     }
     std::cout << min << std::endl;
     */
-
+/*
 
     MapDrawer drawer(m);
     drawer.drawMap(p1, p2);
     drawer.save("bbbb.png");
-
+*/
 
     /*
     MapDrawer draw(10, 10);
@@ -105,8 +103,8 @@ int main() {
      astar.GetPath(start,end,false ); 
      astar.print_path();
     */
-    Point* p1 = new Point(39.907637673875094, 116.39943696144262);
-    Point* p2 = new Point(116.3894407, 39.9062721);
+    //Point* p1 = new Point(39.907637673875094, 116.39943696144262);
+    //Point* p2 = new Point(116.3894407, 39.9062721);
     Point* p3 = new Point(116.5352315, 39.922418);
     Point* p4 = new Point(116.3395358, 39.8471243);
     Point* p5 = new Point(116.3939401, 40.0082142);
