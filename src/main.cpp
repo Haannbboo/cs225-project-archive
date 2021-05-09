@@ -50,11 +50,13 @@ int main() {
     std::cout << "vertices size = " << m.vertices.size() << std::endl;
     */
 
-    Point* p1 = new Point(115, 39.5580032);
-    Point* p2 = new Point(117, 40.2089999);
+    Point* p1 = new Point(115.0001, 41);
+    Point* p2 = new Point(115, 41);
     std::cout << p1->distance(p2) << std::endl;
 
+
     Map* m = new Map("./DataLoader/shape.csv");
+    /*
     double min = 100000;
     for (auto road: m->roads) {
         if (road->length_ < min) {
@@ -62,11 +64,20 @@ int main() {
         }
     }
     std::cout << min << std::endl;
+    */
 
-    MapDrawer draw(m);
-    cs225::PNG* png = draw.drawMap();
+    // MapDrawer draw;  // for testing functionalities
 
-    delete png;
+
+    MapDrawer draw(10, 10);
+    MapDrawer::Cord c1(3, 3);
+    MapDrawer::Cord c2(3, 7);
+    MapDrawer::Cord c3(7, 3);
+    draw.drawLine(c1, c2);
+    draw.drawLine(c1, c3);
+    draw.drawLine(c2, c3);
+    draw.save("aaaa.png");
+
 
     /*
     std::vector<std::vector<int>> maze={ 
