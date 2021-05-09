@@ -78,6 +78,14 @@ void Astar::GetPath(NewPoint &startPoint,NewPoint &endPoint, bool isIgnoreCorner
 } 
 ***/
 
+void Astar::GetPath() {
+    Point* result = findPath();
+    while(result->parent!=nullptr) {
+        path_.push_front(result);
+        result = result->parent;
+    }
+}
+
 
 bool Astar::isInList(const Point* point) const {
     for (Point* iter_point : openList) {
@@ -107,7 +115,7 @@ std::vector<Road*> Astar::getSurroundPoints(Point* point) {
 
 void Astar::print_path() {
     for (auto p : path_) {
-        std::cout << "Road:  "<< p->id_ << "  |  " <<std::endl;
+        std::cout << "Road:  "<< p->id_ << "  |  " << "\n" <<std::endl;
     }
 }
 
