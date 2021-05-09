@@ -1,8 +1,6 @@
 #include "Road.h"
 #include "../DataLoader/dataLoader.h"
 
-// cs225 files for drawing Map
-#include "../cs225/PNG.h"
 
 #pragma once
 
@@ -28,8 +26,6 @@ class Map {
         
         std::vector<Road*> incidentRoads(Point* point);
 
-        cs225::PNG* drawMap(Point* p1, Point* p2);
-        cs225::PNG* drawMapWithPath(Point* p1, Point* p2);
 
         // methods below implement some of the traditional graph data structure
         // they are mainly used for testing
