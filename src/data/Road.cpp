@@ -91,3 +91,13 @@ void Road::geometry_to_cordiantes(std::string geometry) {
         }
     }
 }
+
+Point* Road::otherSide(Point* oneside) {
+    if (oneside == start_) {
+        return end_;
+    } else if (oneside == end_) {
+        return start_
+    } else {
+        return nullptr;
+    }
+}

@@ -25,6 +25,8 @@ class Road {
         Road();
         ~Road();
 
+        Point* otherSide(Point* oneside);
+        
         //  Line to Road
         void loadLine(const Line& line);
 
@@ -33,7 +35,6 @@ class Road {
 
     private:
         void clean();
-        void delete_ptr(Point* const ptr);
         
 };
 
