@@ -9,6 +9,19 @@ MapDrawer::MapDrawer(Map* cityMap) {
     this->cityMap = cityMap;
 }
 
+MapDrawer::~MapDrawer() {
+    clear();
+}
+
+void MapDrawer::clear() {
+    delete corner1;
+    delete corner2;
+    roadsDrawn.clear();
+
+    delete canvas;
+    delete cityMap;
+}
+
 typename MapDrawer::Cord MapDrawer::convertCord(Point* point) {
     Point* temp = new Point(corner1->x, point->y);
     double x = point->distance(temp);
@@ -16,6 +29,7 @@ typename MapDrawer::Cord MapDrawer::convertCord(Point* point) {
 
     temp = new Point(point->x, corner1->y);
     double y = point->distance(temp);
+    delete temp;
 
     return Cord(x, y);
 }
