@@ -1,6 +1,7 @@
 #include "Road.h"
 #include "../DataLoader/dataLoader.h"
 
+
 #pragma once
 
 
@@ -24,6 +25,7 @@ class Map {
         ~Map();
         
         std::vector<Road*> incidentRoads(Point* point);
+
 
         // methods below implement some of the traditional graph data structure
         // they are mainly used for testing

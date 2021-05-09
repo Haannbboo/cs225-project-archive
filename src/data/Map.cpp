@@ -34,6 +34,12 @@ void Map::translateRawData() {
         Road* road = new Road();
         road->loadLine(line);
 
+        // Deleting the road if length_ = 0
+        if (road->length_ == 0) {
+            delete road;
+            continue;
+        }
+
         // Since all Point(s) in Road are new(ed) when undergoing loadLine,
         // the same cordinate (x, y) might have been new(ed) several times in different Road
         // We need to make sure that each (x, y) pair correspond to ONE Point.
@@ -155,3 +161,4 @@ bool Map::areAdjacent(Point* p1, Point* p2) {
 
     return false;
 }
+

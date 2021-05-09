@@ -1,6 +1,10 @@
 #include "data/Map.h"
-#include <iostream>
+#include "data/MapDrawer.h"
+
 #include "algorithms/Astar.h"
+
+#include <iostream>
+
 using namespace std;
 
 
@@ -30,7 +34,7 @@ int main() {
     std::cout << geoInfo << std::endl;
     */
 
-
+    /*
     Map m("./DataLoader/shape.csv");
 
     Road* road = m.roads[2];
@@ -46,6 +50,42 @@ int main() {
     std::cout << "points size = " << m.points.size() << std::endl;
     std::cout << "pointsMap size = " << m.pointsMap.size() << std::endl;
     std::cout << "vertices size = " << m.vertices.size() << std::endl;
+    */
+
+    Point* p1 = new Point(116.2998166, 39.9810686);
+    // Point* p2 = new Point(116.3115702, 39.9746749); rdfz point
+    Point* p2 = new Point(116.3194905, 39.9661083);
+    std::cout << p1->distance(p2) << std::endl;
+
+
+    Map* m = new Map("./DataLoader/shape.csv");
+    /*
+    double min = 100000;
+    for (auto road: m->roads) {
+        if (road->length_ < min) {
+            min = road->length_;
+        }
+    }
+    std::cout << min << std::endl;
+    */
+
+
+    MapDrawer drawer(m);
+    drawer.drawMap(p1, p2);
+    drawer.save("bbbb.png");
+
+
+    /*
+    MapDrawer draw(10, 10);
+    MapDrawer::Cord c1(3, 3);
+    MapDrawer::Cord c2(3, 7);
+    MapDrawer::Cord c3(7, 3);
+    draw.drawLine(c1, c2);
+    draw.drawLine(c1, c3);
+    draw.drawLine(c2, c3);
+    draw.save("aaaa.png");
+    */
+
 
     /*
     std::vector<std::vector<int>> maze={ 
