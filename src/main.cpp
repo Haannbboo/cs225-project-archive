@@ -50,8 +50,9 @@ int main() {
     std::cout << "vertices size = " << m.vertices.size() << std::endl;
     */
 
-    Point* p1 = new Point(115.0001, 41);
-    Point* p2 = new Point(115, 41);
+    Point* p1 = new Point(116.2998166, 39.9810686);
+    // Point* p2 = new Point(116.3115702, 39.9746749); rdfz point
+    Point* p2 = new Point(116.3194905, 39.9661083);
     std::cout << p1->distance(p2) << std::endl;
 
 
@@ -66,9 +67,13 @@ int main() {
     std::cout << min << std::endl;
     */
 
-    // MapDrawer draw;  // for testing functionalities
+
+    MapDrawer drawer(m);
+    drawer.drawMap(p1, p2);
+    drawer.save("bbbb.png");
 
 
+    /*
     MapDrawer draw(10, 10);
     MapDrawer::Cord c1(3, 3);
     MapDrawer::Cord c2(3, 7);
@@ -77,6 +82,7 @@ int main() {
     draw.drawLine(c1, c3);
     draw.drawLine(c2, c3);
     draw.save("aaaa.png");
+    */
 
 
     /*
