@@ -31,8 +31,11 @@ CXX = clang++
 LD = clang++
 OBJS_DIR = .objs
 
-# Add standard final projectz files
+# Add standard final project files
 OBJS += data/Map.o data/Point.o data/Road.o DataLoader/dataLoader.o algorithms/Astar.o
+
+# Add cs225 related files
+OBJS += cs225/HSLAPixel.o cs225/PNG.o cs225/lodepng/lodepng.o
 
 # -MMD and -MP asks clang++ to generate a .d file listing the headers used in the source code for use in the Make process.
 #   -MMD: "Write a depfile containing user headers"
@@ -65,7 +68,9 @@ $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)/DataLoader
 	@mkdir -p $(OBJS_DIR)/algorithms
 	@mkdir -p $(OBJS_DIR)/tests
+	@mkdir -p $(OBJS_DIR)/cs225
 	@mkdir -p $(OBJS_DIR)/cs225/catch
+	@mkdir -p $(OBJS_DIR)/cs225/lodepng
 
 # Rules for compiling source code.
 # - Every object file is required by $(EXE)
@@ -93,7 +98,9 @@ $(TEST): output_msg $(patsubst %.o, $(OBJS_DIR)/%.o, $(OBJS_TEST))
 -include $(OBJS_DIR)/DataLoader/*.d
 -include $(OBJS_DIR)/algorithms/*.d
 -include $(OBJS_DIR)/tests/*.d
+-include $(OBJS_DIR)/cs225/*.d
 -include $(OBJS_DIR)/cs225/catch/*.d
+-include $(OBJS_DIR)/cs225/lodepng/*.d
 
 
 output_msg: ; $(CLANG_VERSION_MSG)
