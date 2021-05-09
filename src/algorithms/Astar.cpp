@@ -1,17 +1,13 @@
 #include <math.h> 
 #include "Astar.h"
 #include <stdlib.h> 
-/***
+
 Astar::Astar(Point* A, Point* B, std::string filename) {
     start_ = A;
     destination_ = B;
-    map_ = new Map m(filename);
+    Map m(filename);
+    map_ = &m;
 }
-***/  
-
-
-
-
 
 /***
 void Astar::InitAstar(std::vector<std::vector<int>> &_maze) { 
@@ -36,18 +32,24 @@ int Astar::calcF(NewPoint *point)
 } 
 
 ***/
-double Astar::calcG(Point* A) {
-    
+
+double Astar::calcG(Road* A) {
+    double total = 0;
+    for (Road* r : path_) {
+        total+= r->length_;
+    }
+    return total + A->length_;
 }
 
 double Astar::calcH(Point* A) {
     return destination_->distance(A);
 }; // this is equavilent to calculate distance between A and B;
 
-double Astar::calcF(Point* point) 
+double Astar::calcF(Road* road, Point* point) 
 {
-    return calcG(start_, point) + calcH(point);
+    return calcG(road) + calcH(point);
 }
+
    
 /***
 NewPoint *Astar::getLeastFpoint() 
@@ -62,7 +64,11 @@ NewPoint *Astar::getLeastFpoint()
      } 
      return NULL; 
 } 
+***/
 
+
+
+/***
 NewPoint *Astar::findPath(NewPoint &startPoint,NewPoint &endPoint, bool isIgnoreCorner) 
 { 
      openList.push_back( new NewPoint(startPoint.x,startPoint.y));
@@ -99,7 +105,8 @@ NewPoint *Astar::findPath(NewPoint &startPoint,NewPoint &endPoint, bool isIgnore
      } 
      return NULL; 
 } 
-
+***/
+/***
 void Astar::GetPath(NewPoint &startPoint,NewPoint &endPoint, bool isIgnoreCorner) 
 { 
      NewPoint *result=findPath(startPoint,endPoint,isIgnoreCorner); 
@@ -110,6 +117,20 @@ void Astar::GetPath(NewPoint &startPoint,NewPoint &endPoint, bool isIgnoreCorner
      }
      return;
 } 
+***/
+
+
+void Astar::GetPath() {
+    Point* result = findPath();
+    while(result) {
+        path_.push_front(result);
+    
+    }
+    return;
+}
+
+
+/***
 
 NewPoint *Astar::isInList( const std::list<NewPoint *> &list, const NewPoint *point) const 
 { 
@@ -118,6 +139,38 @@ NewPoint *Astar::isInList( const std::list<NewPoint *> &list, const NewPoint *po
              return p; 
      return NULL; 
 } 
+
+***/
+
+
+Point* Astar::getLeastFpoint(std::vector<Road*> roads, Point* point) {
+    if (roads.empty()) return point;
+    double min;
+    for (Road* road : roads) {
+        min = calcF(roads->otherside(point));
+    }
+}
+
+std::vector<Road*> Astar::getSurroundPoints(Point* point) {
+    return map_->incidentRoads(point);
+
+}
+/*** 
+void Astar::print_path() {
+    for ( auto &p:path_) {
+         std::cout<< '(' <<p->x<< ',' <<p->y<< ')' <<std::endl; 
+    }
+}
+std::vector<NewPoint *> Astar::getSurroundPoints( const NewPoint *point, bool isIgnoreCorner) const 
+{ 
+     std::vector<NewPoint*> surroundPoints; 
+     for ( unsigned long x=point->x-1;x<=point->x+1;x++) 
+         for ( unsigned long y=point->y-1;y<=point->y+1;y++) 
+             if (isCanreach(point, new NewPoint(x,y),isIgnoreCorner)) 
+                 surroundPoints.push_back( new NewPoint(x,y)); 
+     return surroundPoints; 
+} 
+
 
 bool Astar::isCanreach( const NewPoint *point, const NewPoint *target, bool isIgnoreCorner) const 
 { 
@@ -140,21 +193,11 @@ bool Astar::isCanreach( const NewPoint *point, const NewPoint *target, bool isIg
          } 
      } 
 } 
-
-   
-std::vector<NewPoint *> Astar::getSurroundPoints( const NewPoint *point, bool isIgnoreCorner) const 
-{ 
-     std::vector<NewPoint*> surroundPoints; 
-     for ( unsigned long x=point->x-1;x<=point->x+1;x++) 
-         for ( unsigned long y=point->y-1;y<=point->y+1;y++) 
-             if (isCanreach(point, new NewPoint(x,y),isIgnoreCorner)) 
-                 surroundPoints.push_back( new NewPoint(x,y)); 
-     return surroundPoints; 
-} 
+***/
 
 void Astar::print_path() {
-    for ( auto &p:path_) {
-         std::cout<< '(' <<p->x<< ',' <<p->y<< ')' <<std::endl; 
+    for (auto p : path_) {
+        std::cout << "Road:  "<< p->id_ << "  |  " <<std::endl;
     }
 }
-***/
+

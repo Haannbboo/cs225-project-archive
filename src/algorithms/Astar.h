@@ -3,8 +3,8 @@
 #include "../data/Point.h"
 #include "../data/Road.h"
 #include "../data/Map.h"
+#include <list>
 
-#pragma once 
 
 #include <vector> 
 
@@ -14,17 +14,19 @@ class Astar {
     public:
     Astar();
     Astar(Point* start, Point* des, std::string filename);
-
-    double calcG(Point* A, Point* B);
+    void print_path();
+    std::vector<Road*> getSurroundPoints(Point* point);
+    double calcG(Road* A);
     double calcH(Point* A);
-    double calcF(Point* A);
-
+    double calcF(Road* road, Point* point);
+    Point* getLeastFpoint(std::vector<Road*> roads);
 
     private:
     std::list<Point*> openList; 
     std::list<Point*> closeList;
-    std::list<Point*> path_;
-    Map map_;
+    std::list<Road*> path_;
+
+    Map* map_;
     Point* start_;
     Point* destination_;
 
