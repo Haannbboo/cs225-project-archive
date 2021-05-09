@@ -2,36 +2,13 @@
 #include "Astar.h"
 #include <stdlib.h> 
 
+
 Astar::Astar(Point* A, Point* B, std::string filename) {
     start_ = A;
     destination_ = B;
     Map m(filename);
     map_ = &m;
 }
-
-/***
-void Astar::InitAstar(std::vector<std::vector<int>> &_maze) { 
-     maze=_maze; 
-} 
-
-int Astar::calcG(NewPoint *temp_start,NewPoint *point) 
-{ 
-     int extraG=((point->x-temp_start->x)+ (point->y-temp_start->y))==1?kCost1:kCost2; 
-     int parentG=point->parent==NULL?0:point->parent->G;
-     return parentG+extraG; 
-} 
-
-int Astar::calcH(NewPoint *point,NewPoint *end) 
-{ 
-     return sqrt (( double )(end->x-point->x)*( double )(end->x-point->x)+( double )(end->y-point->y)*( double )(end->y-point->y))*kCost1; 
-} 
-
-int Astar::calcF(NewPoint *point) 
-{ 
-     return point->G+point->H; 
-} 
-
-***/
 
 double Astar::calcG(Road* A) {
     double total = 0;
@@ -49,24 +26,6 @@ double Astar::calcF(Road* road, Point* point)
 {
     return calcG(road) + calcH(point);
 }
-
-   
-/***
-NewPoint *Astar::getLeastFpoint() 
-{ 
-     if (!openList.empty()) 
-     { 
-         auto resPoint=openList.front(); 
-         for ( auto &point:openList) 
-             if (point->F<resPoint->F) 
-                 resPoint=point; 
-         return resPoint; 
-     } 
-     return NULL; 
-} 
-***/
-
-
 
 /***
 NewPoint *Astar::findPath(NewPoint &startPoint,NewPoint &endPoint, bool isIgnoreCorner) 
@@ -120,42 +79,52 @@ void Astar::GetPath(NewPoint &startPoint,NewPoint &endPoint, bool isIgnoreCorner
 ***/
 
 
-void Astar::GetPath() {
-    Point* result = findPath();
-    while(result) {
-        path_.push_front(result);
-    
+bool Astar::isInList(const Point* point) const {
+    for (Point* iter_point : openList) {
+        if (*point == *iter_point) return true;
     }
-    return;
+    return false;
 }
-
-
-/***
-
-NewPoint *Astar::isInList( const std::list<NewPoint *> &list, const NewPoint *point) const 
-{ 
-     for ( auto p:list) 
-         if (p->x==point->x&&p->y==point->y) 
-             return p; 
-     return NULL; 
-} 
-
-***/
 
 
 Point* Astar::getLeastFpoint(std::vector<Road*> roads, Point* point) {
     if (roads.empty()) return point;
-    double min;
+    double min = calcF(roads[0],roads[0]->otherSide(point));
+    Point* min_point;
     for (Road* road : roads) {
-        min = calcF(roads->otherside(point));
+        if (calcF(road,road->otherSide(point)) < min) {
+            min = calcF(road,road->otherSide(point));
+            min_point = road->otherSide(point);
+        }
     }
+    return min_point;
 }
 
 std::vector<Road*> Astar::getSurroundPoints(Point* point) {
     return map_->incidentRoads(point);
 
 }
+
+void Astar::print_path() {
+    for (auto p : path_) {
+        std::cout << "Road:  "<< p->id_ << "  |  " <<std::endl;
+    }
+}
+
 /*** 
+ * 
+ * NewPoint *Astar::getLeastFpoint() 
+{ 
+     if (!openList.empty()) 
+     { 
+         auto resPoint=openList.front(); 
+         for ( auto &point:openList) 
+             if (point->F<resPoint->F) 
+                 resPoint=point; 
+         return resPoint; 
+     } 
+     return NULL; 
+} 
 void Astar::print_path() {
     for ( auto &p:path_) {
          std::cout<< '(' <<p->x<< ',' <<p->y<< ')' <<std::endl; 
@@ -193,11 +162,37 @@ bool Astar::isCanreach( const NewPoint *point, const NewPoint *target, bool isIg
          } 
      } 
 } 
+
+NewPoint *Astar::isInList( const std::list<NewPoint *> &list, const NewPoint *point) const 
+{ 
+     for ( auto p:list) 
+         if (p->x==point->x&&p->y==point->y) 
+             return p; 
+     return NULL; 
+} 
+
+
+void Astar::InitAstar(std::vector<std::vector<int>> &_maze) { 
+     maze=_maze; 
+} 
+
+int Astar::calcG(NewPoint *temp_start,NewPoint *point) 
+{ 
+     int extraG=((point->x-temp_start->x)+ (point->y-temp_start->y))==1?kCost1:kCost2; 
+     int parentG=point->parent==NULL?0:point->parent->G;
+     return parentG+extraG; 
+} 
+
+int Astar::calcH(NewPoint *point,NewPoint *end) 
+{ 
+     return sqrt (( double )(end->x-point->x)*( double )(end->x-point->x)+( double )(end->y-point->y)*( double )(end->y-point->y))*kCost1; 
+} 
+
+int Astar::calcF(NewPoint *point) 
+{ 
+     return point->G+point->H; 
+} 
 ***/
 
-void Astar::print_path() {
-    for (auto p : path_) {
-        std::cout << "Road:  "<< p->id_ << "  |  " <<std::endl;
-    }
-}
+
 

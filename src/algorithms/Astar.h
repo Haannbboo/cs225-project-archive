@@ -19,7 +19,9 @@ class Astar {
     double calcG(Road* A);
     double calcH(Point* A);
     double calcF(Road* road, Point* point);
-    Point* getLeastFpoint(std::vector<Road*> roads);
+    Point* getLeastFpoint(std::vector<Road*> roads, Point* Point);
+    bool isInList(const Point* point) const;
+    void findPath();
 
     private:
     std::list<Point*> openList; 

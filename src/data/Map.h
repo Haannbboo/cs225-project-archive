@@ -1,9 +1,11 @@
 #include "Road.h"
 #include "../DataLoader/dataLoader.h"
+
 #pragma once
 
+
 class Map {
-    private: 
+    public: 
         std::vector<Line> raw_data;
 
         // std::unordered_map is better if we have a hash func for Point
@@ -19,7 +21,7 @@ class Map {
     public: 
         Map();
         Map(std::string filepath);
-        // ~Map();
+        ~Map();
         
         std::vector<Road*> incidentRoads(Point* point);
 
@@ -34,4 +36,5 @@ class Map {
     private:
         void translateRawData();  // O(n)
         void loadVertex(Road* road);
+        void clean();
 };

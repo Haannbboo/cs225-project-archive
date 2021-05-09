@@ -2,9 +2,20 @@
 #include "Road.h"
 
 
-
 Map::Map() {
 
+}
+
+Map::~Map() {
+    clean();
+}
+
+void Map::clean() {
+    points.clear();
+    roads.clear();
+
+    pointsMap.clear();
+    vertices.clear();
 }
 
 Map::Map(std::string filepath) {
@@ -22,7 +33,6 @@ void Map::translateRawData() {
     for (auto line: raw_data) {
         Road* road = new Road();
         road->loadLine(line);
-        roads.push_back(road);
 
         // Since all Point(s) in Road are new(ed) when undergoing loadLine,
         // the same cordinate (x, y) might have been new(ed) several times in different Road
@@ -36,6 +46,7 @@ void Map::translateRawData() {
             xy.second = p->y;
             if (pointsMap.find(xy) != pointsMap.end()) {
                 // when (x, y) is an old point
+                delete road->cordinates_[i];
                 road->cordinates_[i] = pointsMap.at(xy);
             } else {
                 pointsMap[xy] = p;
@@ -44,6 +55,8 @@ void Map::translateRawData() {
         }
         road->start_ = road->cordinates_[0];
         road->end_ = road->cordinates_.back();
+
+        roads.push_back(road);
 
         // Put start_ and end_ of every Road into adj list
         // Intermediate Points have not been considered yet

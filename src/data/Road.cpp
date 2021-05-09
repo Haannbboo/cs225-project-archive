@@ -22,9 +22,9 @@ void Road::loadLine(const Line& line) {
     id_ = std::stoi(line.osm_id);
     
     // level_
-    try {
+    if (levelMapping.find(line.type) != levelMapping.end()) {
         level_ = levelMapping.at(line.type);
-    } catch (const std::out_of_range& oor) {
+    } else {
         level_ = 10;  // default value
     }
     
@@ -89,5 +89,15 @@ void Road::geometry_to_cordiantes(std::string geometry) {
         } else {
             geoInfo.erase(0, comma_index+2);
         }
+    }
+}
+
+Point* Road::otherSide(Point* oneside) {
+    if (oneside == start_) {
+        return end_;
+    } else if (oneside == end_) {
+        return start_;
+    } else {
+        return nullptr;
     }
 }
