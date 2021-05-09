@@ -30,7 +30,7 @@ int main() {
     std::cout << geoInfo << std::endl;
     */
 
-
+    /*
     Map m("./DataLoader/shape.csv");
 
     Road* road = m.roads[1];
@@ -44,6 +44,11 @@ int main() {
     std::cout << "points size = " << m.points.size() << std::endl;
     std::cout << "pointsMap size = " << m.pointsMap.size() << std::endl;
     std::cout << "vertices size = " << m.vertices.size() << std::endl;
+    */
+
+    Point* p1 = new Point(115.7460064, 35.0);
+    Point* p2 = new Point(117.1169937, 35.0);
+    std::cout << p1->distance(p2) << std::endl;
 
     /*
     std::vector<std::vector<int>> maze={ 

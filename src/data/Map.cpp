@@ -156,3 +156,7 @@ bool Map::areAdjacent(Point* p1, Point* p2) {
 
     return false;
 }
+
+cs225::PNG* Map::drawMap(Point* p1, Point* p2) {
+    return new cs225::PNG();
+}

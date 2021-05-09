@@ -96,7 +96,7 @@ Point* Road::otherSide(Point* oneside) {
     if (oneside == start_) {
         return end_;
     } else if (oneside == end_) {
-        return start_
+        return start_;
     } else {
         return nullptr;
     }
