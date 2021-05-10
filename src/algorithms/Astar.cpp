@@ -106,3 +106,7 @@ void Astar::print_path() {
         std::cout << "Road:  "<< point->x << "  |  " << point->y << "\n" <<std::endl;
     }
 }
+
+void Astar::ToOpenList(Point* point) {
+    openList.push_back(point);
+}

@@ -133,7 +133,7 @@ int main() {
     std::cout << star.map_->vertices.size() << std::endl;
     std::cout << star.map_->points.size() << std::endl;
     std::cout << star.map_->roads.size() << std::endl;
-    std::vector<Road*> test_road = star.getSurroundPoints(star.map_->points[0]);
+    std::vector<Road*> test_road = star.getSurroundPoints(star.map_->findPoint(5,5));
     for (auto r : test_road) {
         std::cout << r->id_ << std::endl;
     }
