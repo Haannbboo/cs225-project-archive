@@ -38,22 +38,35 @@ TEST_CASE("Test calcH Function") {
 // CLAIM: This Tests Cases Provides Only A Simple Test For Astar Algorithm
 // ------------------------
 
+bool test_getSurroundPoints(std::vector<Road*> test1, std::vector<Roads*> test2) {
+    for (int i = 0; i < test1.size(); i++) {
+        if (test1[i]->id_ != test2[i]->id_) return false;
+    }
+    return true;
+}
+
 Map m("TEST_MAP.csv");
 
 TEST_CASE("TEST Constructor") {
-
-
+    Point* p1 = new Point(0,0);
+    Point* p2 = new Point(10,10);
+    Astar star(p1, p2, "TEST_MAP.csv")
     REQUIRE());
 
 }
 
 TEST_CASE("TEST getSurroundPoints") {
+    Point* p1 = new Point(0,0);
+    Point* p2 = new Point(10,10);
+    Astar star(p1, p2, "TEST_MAP.csv")
+    std::vector<Road*> test_road = star.getsurroundpoints(p1);
+    std::vector
 
 
     REQUIRE());
 
 }
-
+/***
 TEST_CASE("TEST calcG") {
 
 
@@ -62,6 +75,8 @@ TEST_CASE("TEST calcG") {
 }
 
 TEST_CASE("TEST calcH") {
+    double = 1.56852e+06;
+
 
 
     REQUIRE());
@@ -102,3 +117,4 @@ TEST_CASE("getPath") {
     REQUIRE());
 
 }
+***/

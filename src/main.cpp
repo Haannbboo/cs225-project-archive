@@ -1,4 +1,5 @@
 #include "data/Map.h"
+#include "data/Road.h"
 #include "data/MapDrawer.h"
 
 #include "algorithms/Astar.h"
@@ -35,8 +36,10 @@ int main() {
     */
 
     Map m("./DataLoader/shape.csv");
-
-    Road* road = m.roads[2];
+    std::cout << m.vertices.size() << std::endl;
+    std::cout << m.points.size() << std::endl;
+    std::cout << m.roads.size() << std::endl;
+    //Road* road = m.roads[2];
 
 /***
     std::cout
@@ -44,7 +47,7 @@ int main() {
     << "level_ = " << road->level_ << "\n"
     << "length_ = " << road->length_ << "\n"
     << "oneway_ = " << road->oneway_ << std::endl;
-***/
+
     std::cout << "roads size = " << m.roads.size() << std::endl;
     std::cout << "points size = " << m.points.size() << std::endl;
     std::cout << "pointsMap size = " << m.pointsMap.size() << std::endl;
@@ -55,7 +58,7 @@ int main() {
     Point* p2 = new Point(116.3194905, 39.9661083);
     std::cout << p1->distance(p2) << std::endl;
 
-
+***/
     //Map* m = new Map("./DataLoader/shape.csv");
     /*
     double min = 100000;
@@ -105,6 +108,7 @@ int main() {
     */
     //Point* p1 = new Point(39.907637673875094, 116.39943696144262);
     //Point* p2 = new Point(116.3894407, 39.9062721);
+    /***
     Point* p3 = new Point(116.5352315, 39.922418);
     Point* p4 = new Point(116.3395358, 39.8471243);
     Point* p5 = new Point(116.3939401, 40.0082142);
@@ -120,7 +124,21 @@ int main() {
         std::cout << m.incidentRoads(i->first).size() << std::endl;
     }
     //std::cout << m.incidentRoads(m.vertices.end()->first).size() << std::endl;
-    
+    ***/
+    Point* pt1 = new Point(0,0);
+    Point* pt2 = new Point(10,10);
+    Astar star(pt1, pt2, "./tests/TEST_MAP.csv");
+   // std::vector<Road*> testt = star.getSurroundPoints(pt1);
+    //std::cout << testt.size() << std::endl;
+    std::cout << star.map_->vertices.size() << std::endl;
+    std::cout << star.map_->points.size() << std::endl;
+    std::cout << star.map_->roads.size() << std::endl;
+    std::vector<Road*> test_road = star.getSurroundPoints(star.map_->points[0]);
+    for (auto r : test_road) {
+        std::cout << r->id_ << std::endl;
+    }
+    std::cout << test_road.size() << std::endl;
+    std::cout << star.calcH(pt1) << std::endl;
 
     return 0;
 }

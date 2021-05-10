@@ -28,14 +28,14 @@ class Astar {
     // FUNCTIONS FOR TESTING
     void ToOpenList(Point* point);
     void ToCloseList(Point* point);
-    
+    Map* map_;
 
     private:
     std::list<Point*> openList; 
     std::list<Point*> closeList;
     std::list<Point*> path_;
 
-    Map* map_;
+   
     Point* start_;
     Point* destination_;
 };   

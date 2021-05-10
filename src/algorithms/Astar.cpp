@@ -6,8 +6,8 @@
 Astar::Astar(Point* A, Point* B, std::string filename) {
     start_ = A;
     destination_ = B;
-    Map m(filename);
-    map_ = &m;
+    Map* m = new Map(filename);
+    map_ = m;
 }
 
 double Astar::calcG(Point* A, Road* R) {
