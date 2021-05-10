@@ -58,25 +58,38 @@ TEST_CASE("TEST IsInList") {
     REQUIRE(resultA == false);
     REQUIRE(resultB == true);
 }
-/***
+
 TEST_CASE("TEST getLeastFPoint") {
-
-
-    REQUIRE());
+    Point* p1 = new Point(0,0);
+    Point* p2 = new Point(10,10);
+    Astar star(p1, p2, "./tests/TEST_MAP.csv");
+    star.ToOpenList(star.map_->findPoint(5,5));
+    star.ToOpenList(star.map_->findPoint(7,3));
+    star.map_->findPoint(5,5)->F = 1;
+    star.map_->findPoint(7,3)->F = 2;
+    Point* result = star.getLeastFpoint();
+    REQUIRE(result->x == star.map_->findPoint(5,5)->x);
 
 }
-
+/***
 TEST_CASE("findPath") {
 
 
     REQUIRE());
 
 }
+***/
 
 TEST_CASE("getPath") {
-
+    Point* p1 = new Point(0,0);
+    Point* p2 = new Point(10,10);
+    Astar star(p1, p2, "./tests/TEST_MAP.csv");
+    star.ToPath(star.map_->findPoint(5,5));
+    star.ToPath(star.map_->findPoint(7,3));
+    star.map_->findPoint(10,10)->parent = star.map_->findPoint(7,3);
+    star.map_->findPoint(7,3)->parent = star.map_->findPoint(5,5);
+    star.map_->findPoint(5,5)->parent = star.map_->findPoint(0,0);
 
     REQUIRE());
 
 }
-***/

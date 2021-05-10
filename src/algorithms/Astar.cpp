@@ -87,10 +87,12 @@ Point* Astar::isInList() const {
 
 Point* Astar::getLeastFpoint() {
     double min = openList.front()->F;
+    std::cout << "min" << std::endl;
+    std::cout << min << std::endl;
     Point* returnpoint;
-    for (std::list<Point*>::iterator i = openList.begin(); i!=openList.end(); i++) {
-        if ((*i)->F < min) {
-            returnpoint = *i;
+    for (auto point : openList) {
+        if (point->F < min) {
+            returnpoint = point;
         }
     }
     return returnpoint;
@@ -98,15 +100,22 @@ Point* Astar::getLeastFpoint() {
 
 std::vector<Road*> Astar::getSurroundPoints(Point* point) {
     return map_->incidentRoads(point);
-
 }
 
-void Astar::print_path() {
-    for (Point* point : path_) {
-        std::cout << "Road:  "<< point->x << "  |  " << point->y << "\n" <<std::endl;
+void Astar::print_path(Point* point) {
+    while (point->parent!=nullptr) {
+        std::cout << "Point:  "<< point->x << "  |  " << point->y << "\n" <<std::endl;
+        std::pair<Point*, Point*> r = std::make_pair(map_->findPoint(point->x,point->y),map_->findPoint(point->parent->x,point->parent->y));
+        std::cout << "Road:  " << map_->roadsMap.at(r)->id_ << "\n" << std::endl;
+        point = point->parent;
     }
+    std::cout << "Point:  "<< point->x << "  |  " << point->y << "\n" <<std::endl;
 }
 
 void Astar::ToOpenList(Point* point) {
     openList.push_back(point);
+}
+
+void Astar::ToPath(Point* point) {
+    path_.push_back(point);
 }

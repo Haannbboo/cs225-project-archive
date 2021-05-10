@@ -14,7 +14,6 @@ class Astar {
     public:
     Astar();
     Astar(Point* start, Point* des, std::string filename);
-    void print_path();
     std::vector<Road*> getSurroundPoints(Point* point);
     double calcG(Point* A, Road* R);
     double calcH(Point* A);
@@ -24,10 +23,12 @@ class Astar {
     Point* isInList() const;
     Point* findPath();
     void getPath();
+    void print_path(Point* point);
 
     // FUNCTIONS FOR TESTING
     void ToOpenList(Point* point);
     void ToCloseList(Point* point);
+    void ToPath(Point* point);
     Map* map_;
 
     private:
