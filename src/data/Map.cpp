@@ -1,5 +1,6 @@
 #include "Map.h"
 #include "Road.h"
+#include <vector>
 
 
 Map::Map() {
@@ -61,6 +62,21 @@ void Map::translateRawData() {
         }
         road->start_ = road->cordinates_[0];
         road->end_ = road->cordinates_.back();
+
+
+        if (road->cordinates_.size() > 2) {
+            for (int i = 0; i < (int) road->cordinates_.size() - 1; i++) {
+                Point* newstart = road->cordinates_[i];
+                Point* newend = road->cordinates_[i+1];
+                Road* newroad = road->loadRoad(newstart, newend);
+                roads.push_back(newroad);
+                loadVertex(newroad);
+                // std::cout << "(" << newroad->start_->x << ", " << newroad->start_->y << "), "
+                // << "(" << newroad->end_->x << ", " << newroad->end_->y << ")" << std::endl;
+            }
+            delete road;
+            continue;
+        } 
 
         roads.push_back(road);
 

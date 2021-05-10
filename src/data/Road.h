@@ -30,6 +30,9 @@ class Road {
         //  Line to Road
         void loadLine(const Line& line);
 
+        // Copy current road's property to a new Road with newstart and newend
+        Road* loadRoad(Point* newstart, Point* newend);
+
         // for testing
         void geometry_to_cordiantes(std::string geometry);
 
