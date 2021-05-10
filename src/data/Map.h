@@ -12,6 +12,7 @@ class Map {
 
         // store all Points new(ed)
         std::map<std::pair<double, double>, Point*> pointsMap;
+        std::map<std::pair<Point*, Point*>, Road*> roadsMap;
 
     public:
         std::vector<Point*> points;
@@ -23,6 +24,8 @@ class Map {
         ~Map();
         
         std::vector<Road*> incidentRoads(Point* point);
+
+        Point* findPoint(double x, double y);
 
 
         // methods below implement some of the traditional graph data structure

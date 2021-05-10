@@ -25,6 +25,15 @@ Map::Map(std::string filepath) {
     translateRawData();
 }
 
+Point* Map::findPoint(double x, double y) {
+    std::pair<double, double> xy = std::make_pair(x, y);
+    if (pointsMap.find(xy) != pointsMap.end()) {
+        return pointsMap.at(xy);
+    } else {
+        return nullptr;
+    }
+}
+
 
 void Map::translateRawData() {
     if (raw_data.empty()) {
@@ -48,9 +57,7 @@ void Map::translateRawData() {
         // else we put the (x, y) : Point* into the pointsCreated map.
         for (size_t i = 0; i < road->cordinates_.size(); i++) {
             Point* p = road->cordinates_[i];
-            std::pair<double, double> xy;
-            xy.first = p->x;
-            xy.second = p->y;
+            std::pair<double, double> xy = std::make_pair(p->x, p->y);
             if (pointsMap.find(xy) != pointsMap.end()) {
                 // when (x, y) is an old point
                 delete road->cordinates_[i];
@@ -68,9 +75,17 @@ void Map::translateRawData() {
             for (int i = 0; i < (int) road->cordinates_.size() - 1; i++) {
                 Point* newstart = road->cordinates_[i];
                 Point* newend = road->cordinates_[i+1];
-                Road* newroad = road->loadRoad(newstart, newend);
-                roads.push_back(newroad);
-                loadVertex(newroad);
+                std::pair<Point*, Point*> newpair = std::make_pair(newstart, newend);
+                if (roadsMap.find(newpair) != roadsMap.end()) {
+                    // road with (newstart, newend) already created
+                    continue;
+                } else {
+                    Road* newroad = road->loadRoad(newstart, newend);
+                    roadsMap[newpair] = newroad;
+                    roads.push_back(newroad);
+                    loadVertex(newroad);
+                }
+                
                 // std::cout << "(" << newroad->start_->x << ", " << newroad->start_->y << "), "
                 // << "(" << newroad->end_->x << ", " << newroad->end_->y << ")" << std::endl;
             }
@@ -114,9 +129,7 @@ std::vector<Road*> Map::incidentRoads(Point* point) {
 
 void Map::insertPoint(double x, double y) {
     // check if (x, y) already exists
-    std::pair<double, double> xy;
-    xy.first = x;
-    xy.second = y;
+    std::pair<double, double> xy = std::make_pair(x, y);
     if (pointsMap.find(xy) != pointsMap.end()) {
         return;
     }
