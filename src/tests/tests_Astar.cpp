@@ -68,7 +68,8 @@ TEST_CASE("TEST getLeastFPoint") {
     star.map_->findPoint(5,5)->F = 1;
     star.map_->findPoint(7,3)->F = 2;
     Point* result = star.getLeastFpoint();
-    REQUIRE(result->x == star.map_->findPoint(5,5)->x);
+    REQUIRE(result->y == 5);
+    REQUIRE(result->x == 5);
 
 }
 /***
@@ -80,6 +81,7 @@ TEST_CASE("findPath") {
 }
 ***/
 
+/***
 TEST_CASE("getPath") {
     Point* p1 = new Point(0,0);
     Point* p2 = new Point(10,10);
@@ -90,6 +92,6 @@ TEST_CASE("getPath") {
     star.map_->findPoint(7,3)->parent = star.map_->findPoint(5,5);
     star.map_->findPoint(5,5)->parent = star.map_->findPoint(0,0);
 
-    REQUIRE());
-
+    REQUIRE();
 }
+***/
