@@ -1,3 +1,4 @@
+
 #include <string>
 #include <vector>
 #pragma once
@@ -18,5 +19,9 @@ struct Point {
 
     std::vector<Point*> adjacent(Point* other);
     void setNewCords(double x, double y);
+    Point* parent;
+    double F;
+    double G;
+    double H;
         
 };

@@ -1,7 +1,7 @@
 #pragma once
-#include "data/Point.h"
-#include "data/Road.h"
-#include "data/Map.h"
+#include "../data/Map.h"
+#include "../data/Point.h"
+#include "../data/Road.h"
 #include <vector>
 #include <cmath>
 #include <iostream>

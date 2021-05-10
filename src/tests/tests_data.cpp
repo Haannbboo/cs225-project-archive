@@ -8,7 +8,7 @@ bool almostEqual(double x, double target) {
     return abs(x - target) / target < TOLERANCE;
 }
 
-
+/***
 TEST_CASE("Test Point - distance") {
     // cordinates and distacne info from Google Map
     Point* p1 = new Point(116.39943696144262, 39.907637673875094);
@@ -126,3 +126,5 @@ TEST_CASE("Test Map - areAdjacent") {
     delete r1;
     delete r2;
 }
+
+***/

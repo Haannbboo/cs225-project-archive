@@ -9,6 +9,10 @@ Point:: Point(){
 Point::Point(double x, double y){
     this->x = x;
     this->y = y;
+    G = 0.0;
+    H = 0.0;
+    F = 0.0;
+    parent = nullptr;
 }
 
 bool Point::operator==(const Point &other) const{

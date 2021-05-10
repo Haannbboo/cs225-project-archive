@@ -8,7 +8,7 @@
 #include <iostream>
 #include <functional>
 #include <utility>
-
+/***
 
 void algorithm::Dijkstra(Point* start, Point* destination){
     Point* cur;
