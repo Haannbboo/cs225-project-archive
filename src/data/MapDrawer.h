@@ -27,6 +27,7 @@ class MapDrawer {
     public:
         MapDrawer(unsigned width, unsigned height);  // for debugging only
         MapDrawer(Map* cityMap);
+        ~MapDrawer();
 
         void save(std::string fpath);
         
@@ -37,6 +38,7 @@ class MapDrawer {
     public:
         Cord convertCord(Point* point);  // convert a geo cord to the (x, y) on PNG
         bool withinCanvas(Point* point);  // if point is within the (p1, p2) range
+        void clear();
 
         void drawLine(Point* p1, Point* p2);  // draw a STRAIGHT line from p1 to p2
         void drawVerticalLine(Cord c1, Cord c2);

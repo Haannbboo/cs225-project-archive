@@ -12,8 +12,6 @@ Road::~Road() {
 }
 
 void Road::clean() {
-    delete start_;
-    delete end_;
     cordinates_.clear();
 }
 
@@ -54,6 +52,20 @@ void Road::loadLine(const Line& line) {
     // bridge
     bridge_ = line.bridge;
 
+}
+
+Road* Road::loadRoad(Point* newstart, Point* newend) {
+    Road* newroad = new Road();
+
+    newroad->start_ = newstart;
+    newroad->end_ = newend;
+    newroad->cordinates_ = std::vector<Point*>{newstart, newend};
+    newroad->length_ = newstart->distance(newend);
+
+    newroad->level_ = level_;
+    newroad->oneway_ = oneway_;
+    newroad->bridge_ = bridge_;
+    return newroad;
 }
 
 

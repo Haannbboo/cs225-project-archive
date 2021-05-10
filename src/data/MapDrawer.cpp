@@ -9,6 +9,19 @@ MapDrawer::MapDrawer(Map* cityMap) {
     this->cityMap = cityMap;
 }
 
+MapDrawer::~MapDrawer() {
+    clear();
+}
+
+void MapDrawer::clear() {
+    delete corner1;
+    delete corner2;
+    roadsDrawn.clear();
+
+    delete canvas;
+    delete cityMap;
+}
+
 typename MapDrawer::Cord MapDrawer::convertCord(Point* point) {
     Point* temp = new Point(corner1->x, point->y);
     double x = point->distance(temp);
@@ -16,6 +29,7 @@ typename MapDrawer::Cord MapDrawer::convertCord(Point* point) {
 
     temp = new Point(point->x, corner1->y);
     double y = point->distance(temp);
+    delete temp;
 
     return Cord(x, y);
 }
@@ -37,18 +51,20 @@ void MapDrawer::drawMap(Point* p1, Point* p2) {
         corner1 = p2;
         corner2 = p1;
     } else {
+        std::cout << p1->x << ", " << p1->y << std::endl;
+        std::cout << p2->x << ", " << p2->y << std::endl;
         return;
     }
 
     // first determining the size of the canvas
-    Point* temp2 = new Point(p2->x, p1->y);
-    int width = p1->distance(temp2);
+    Point* temp2 = new Point(corner2->x, corner1->y);
+    int width = corner1->distance(temp2);
     delete temp2;
 
-    Point* temp1 = new Point(p2->x, p1->y);
-    int height = temp1->distance(p2);
+    Point* temp1 = new Point(corner2->x, corner1->y);
+    int height = temp1->distance(corner2);
     delete temp1;
-
+    std::cout << width << ", " << height << std::endl;
     canvas = new cs225::PNG(width, height);
     
     int size = cityMap->points.size();
@@ -92,8 +108,8 @@ void MapDrawer::drawMap() {
             maxy = r->y;
         }
     }
-    corner1 = new Point(minx, miny);
-    corner2 = new Point(maxx, maxy);
+    corner1 = new Point(minx, maxy);
+    corner2 = new Point(maxx, miny);
 
     drawMap(corner1, corner2);
 }
