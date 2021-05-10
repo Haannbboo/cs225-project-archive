@@ -90,6 +90,6 @@ TEST_CASE("getPath") {
     star.map_->findPoint(7,3)->parent = star.map_->findPoint(5,5);
     star.map_->findPoint(5,5)->parent = star.map_->findPoint(0,0);
 
-    REQUIRE());
+    // REQUIRE());
 
 }
