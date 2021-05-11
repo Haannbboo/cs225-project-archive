@@ -76,12 +76,18 @@ void Map::translateRawData() {
                 Point* newstart = road->cordinates_[i];
                 Point* newend = road->cordinates_[i+1];
                 std::pair<Point*, Point*> newpair = std::make_pair(newstart, newend);
+                std::pair<Point*, Point*> newpair2 = std::make_pair(newend, newstart);
+                Road* newroad;
                 if (roadsMap.find(newpair) != roadsMap.end()) {
                     // road with (newstart, newend) already created
                     continue;
+                } else if (roadsMap.find(newpair2) != roadsMap.end()) {
+                    // road with (newend, newstart) already created
+                    continue;
                 } else {
-                    Road* newroad = road->loadRoad(newstart, newend);
+                    newroad = road->loadRoad(newstart, newend);
                     roadsMap[newpair] = newroad;
+                    roadsMap[newpair2] = newroad;
                     roads.push_back(newroad);
                     loadVertex(newroad);
                 }
