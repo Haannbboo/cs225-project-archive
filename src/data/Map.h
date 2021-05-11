@@ -25,7 +25,10 @@ class Map {
         
         std::vector<Road*> incidentRoads(Point* point);
 
+        // if Point with (x, y) and Road with (p1, p2) is not in the Map
+        // two methods below will return nullptr!!!
         Point* findPoint(double x, double y);
+        Road* findRoad(Point* p1, Point* p2);
 
 
         // methods below implement some of the traditional graph data structure
