@@ -34,6 +34,19 @@ Point* Map::findPoint(double x, double y) {
     }
 }
 
+Road* Map::findRoad(Point* p1, Point* p2) {
+    // check (p1, p2) and then (p2, p1)
+    std::pair<Point*, Point*> pointsPair1 = std::make_pair(p1, p2);
+    std::pair<Point*, Point*> pointsPair2 = std::make_pair(p2, p1);
+    if (roadsMap.find(pointsPair1) != roadsMap.end()) {
+        return roadsMap.at(pointsPair1);
+    } else if (roadsMap.find(pointsPair2) != roadsMap.end()) {
+        return roadsMap.at(pointsPair2);
+    } else {
+        return nullptr;
+    }
+}
+
 
 void Map::translateRawData() {
     if (raw_data.empty()) {
