@@ -22,7 +22,7 @@ TEST_CASE("TEST Constructor") {
 TEST_CASE("TEST getSurroundPoints") {
     Point* p1 = new Point(0,0);
     Point* p2 = new Point(10,10);
-    Astar star(p1, p2, "./tests/TEST_MAP.csv");
+    Astar star(p1, p2, "./tests/s1.csv");
     std::vector<Road*> test_road = star.getSurroundPoints(star.map_->findPoint(5,5));
     std::vector<int> test_vec = {3,5,8};
     std::vector<int> test_vec2;
