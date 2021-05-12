@@ -32,8 +32,7 @@ int main() {
     }
     std::cout << comma_index << std::endl;
     geoInfo.erase(0, comma_index+2);
-    std::cout << geoInfo << std::endl;
-    */
+    std::cout << geoInfo << std::endl; 
 
     Map m("./DataLoader/shape.csv");
     std::cout << m.vertices.size() << std::endl;
@@ -41,7 +40,7 @@ int main() {
     std::cout << m.roads.size() << std::endl;
     //Road* road = m.roads[2];
 
-/***
+
     std::cout
     << "id_ = " << road->id_ << "\n"
     << "level_ = " << road->level_ << "\n"
@@ -124,21 +123,28 @@ int main() {
         std::cout << m.incidentRoads(i->first).size() << std::endl;
     }
     //std::cout << m.incidentRoads(m.vertices.end()->first).size() << std::endl;
-    ***/
-    Point* pt1 = new Point(0,0);
-    Point* pt2 = new Point(10,10);
-    Astar star(pt1, pt2, "./tests/TEST_MAP.csv");
-   // std::vector<Road*> testt = star.getSurroundPoints(pt1);
-    //std::cout << testt.size() << std::endl;
-    std::cout << star.map_->vertices.size() << std::endl;
-    std::cout << star.map_->points.size() << std::endl;
-    std::cout << star.map_->roads.size() << std::endl;
-    std::vector<Road*> test_road = star.getSurroundPoints(star.map_->findPoint(5,5));
-    for (auto r : test_road) {
-        std::cout << r->id_ << std::endl;
-    }
-    std::cout << test_road.size() << std::endl;
-    std::cout << star.calcH(pt1) << std::endl;
+  
+    Point* p1 = new Point(0,0);
+    Point* p2 = new Point(10,10);
+    Astar star(p1, p2, "./tests/TEST_MAP.csv");
+    star.ToOpenList(star.map_->findPoint(5,5));
+    star.ToOpenList(star.map_->findPoint(7,3));
+    star.map_->findPoint(5,5)->F = 1;
+    star.map_->findPoint(7,3)->F = 2;
+    Point* result = star.getLeastFpoint();
+  ***/
+    //Point* p2 = new Point(116.3110837, 39.9775838);
+    //Point* p1 = new Point(116.3105926, 39.9774053);
+    //Astar star(p2, p1, "./tests/s1.csv");
+    //star.map_->findPoint(10,10)->parent = star.map_->findPoint(7,3);
+    //star.map_->findPoint(7,3)->parent = star.map_->findPoint(5,5);
+    //star.map_->findPoint(5,5)->parent = star.map_->findPoint(0,0);
+    //star.print_path(star.findPath());
+
+    Point* p3 = new Point(116.4189201, 39.9578917);
+    Point* p4 = new Point(116.4255741, 39.9581549);
+    Astar star(p3, p4, "./DataLoader/shape.csv");
+    star.print_path(star.findPath());
 
     return 0;
 }
