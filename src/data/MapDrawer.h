@@ -1,6 +1,6 @@
 #include "Map.h"
 #include "../cs225/PNG.h"
-
+#include <cstdlib>
 #pragma once
 
 
