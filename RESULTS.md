@@ -32,3 +32,8 @@ A star algorithm is by far the most popular algorithm in finding the shortest pa
     }
 
  
+During the testing of our algorithm, we found out that weight is a really important factor in our algorithm design. Essentially, heurisitc search like A* is informed search. We found out that if we multiply the weight of H with a different factor, the result will totally different.
+
+放几张图片展示权重不同的时候 最短路径的结果是不同的
+
+This informs us that our algorithm can be optimized in multiple ways since it relies on retrieving the next point with the lowest F value. In real life traffic, multiple factors can be considered. Is it a highway or pedestrian? Is this road in downtown or in suburb area? Does this road charges any fee? If the user is planning to go to work using our navigation algorithm, can we find not only the shortest path, but also the least time consuming path by bypassing some of the traffic-congested area? We then realize that modern map&nagivation application have some factors that needed to be taken into consideration. 
