@@ -10,7 +10,7 @@ There are three test suites for the program
 - TEST SUITE FOR DATA 
 - 
 
-# javascript-astar
+#  mqiu3-daweix3-hanbog2-lurenw2 CS225 Navigation in the City of Beijing
 
 ## An implementation of the A* Search Algorithm in JavaScript
 
