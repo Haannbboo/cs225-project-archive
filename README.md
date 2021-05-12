@@ -12,11 +12,12 @@ There are three test suites for the program
 
 #  mqiu3-daweix3-hanbog2-lurenw2 CS225 Navigation in the City of Beijing
 
-## An implementation of the A* Search Algorithm in JavaScript
+## The location of all major code, data, and results.
 
-See a demo at http://www.briangrinstead.com/files/astar/
 
-## Sample Usage
+## Full instructions on how to build and run your executable, including how to define the input data and output location for each method. 
+
+## Full instructions how to build and run your test suite, including a general description on what tests you have created. It is in your best interest to make the instructions (and the running of your executables and tests) as simple and straightforward as possible.
 
 If you want just the A* search code (not the demo visualization), use code like this http://gist.github.com/581352
 ```js
