@@ -10,18 +10,22 @@
 #include <utility>
 
  Dijkstra::Dijkstra(Point* start, Point* destination, string filename){
-    start->best_estimate = 0;
+    
     Map* m = new Map(filename);
     map_ = m;
+    
     start = map_->findPoint(start->x, start->y);
     destination = map_->findPoint(destination ->x, destination ->y);
+    start->best_estimate = 0;
+    road.push_back(start);
     Point* cur = start; //initialize current point
     visited_points.push_back(cur);
     while(cur != destination){
         cur = findnearstpoint();
         // currentpoint->visited = true;
         visited_points.push_back(cur);
-        cout<<"new point: "<<cur->x<<","<<cur->y<<endl;
+        road.push_back(cur);
+        //cout<<"new point: "<<cur->x<<","<<cur->y<<endl;
     }
 }
 
@@ -38,18 +42,18 @@ Point* Dijkstra::findnearstpoint(){
                 point->best_estimate = visit->best_estimate+dis;
             }
             if(point->best_estimate < min){ // find out the smallest point to take as nearest point
-                cout<<"best estimate: "<<point->best_estimate<<endl;
+                //cout<<"best estimate: "<<point->best_estimate<<endl;
                 min = point->best_estimate;
                 minp = point;
             }
         }
     }
-    cout<<minp<<endl;
-    cout<<"current points are:";
-    for(auto point : visited_points){
-        cout<<point<<endl;
-    }
-    cout<<"finish findnearest point"<<endl;
+    //cout<<minp<<endl;
+    //cout<<"current points are:";
+    //for(auto point : visited_points){
+    //   cout<<point<<endl;
+    //}
+    //cout<<"finish findnearest point"<<endl;
     return minp;
 }
 
@@ -78,9 +82,9 @@ void Dijkstra::getpoints(Point * a) { //add all unvisited point to a's connected
     }
 }
 void Dijkstra::print_path(){
-    cout<<"the path should be:";
+    cout<<"the path should be:"<<endl;
     for(size_t i = 0; i < road.size(); i++){
-        cout<<road[i]<<endl;
+        cout<<"("<<road[i]->x<<","<<road[i]->y<<") "<<road[i]->best_estimate<<" "<<endl;
     }
 }
 

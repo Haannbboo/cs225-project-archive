@@ -14,16 +14,20 @@ class Astar {
     public:
     Astar();
     Astar(Point* start, Point* des, std::string filename);
+    Astar(Point* start, Point* des, Map* map);
     std::vector<Road*> getSurroundPoints(Point* point);
     double calcG(Point* A, Road* R);
     double calcH(Point* A);
     double calcF(Road* road, Point* point);
     Point* getLeastFpoint();
     bool isInList(const Point* point) const;
+    bool isInCloseList(const Point* point) const;
     Point* isInList() const;
     Point* findPath();
     void getPath();
     void print_path(Point* point);
+    std::vector<Point*> points_in_path();
+    std::vector<Point*> points_in_path(Point* point);
 
     // FUNCTIONS FOR TESTING
     void ToOpenList(Point* point);

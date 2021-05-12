@@ -32,8 +32,7 @@ int main() {
     }
     std::cout << comma_index << std::endl;
     geoInfo.erase(0, comma_index+2);
-    std::cout << geoInfo << std::endl;
-    */
+    std::cout << geoInfo << std::endl; 
 
     // Map m("./DataLoader/shape.csv");
     // std::cout << m.vertices.size() << std::endl;
@@ -41,7 +40,7 @@ int main() {
     // std::cout << m.roads.size() << std::endl;
     //Road* road = m.roads[2];
 
-/***
+
     std::cout
     << "id_ = " << road->id_ << "\n"
     << "level_ = " << road->level_ << "\n"
@@ -125,9 +124,9 @@ int main() {
     }
     //std::cout << m.incidentRoads(m.vertices.end()->first).size() << std::endl;
     ***/
-    Point* pt1 = new Point(0,0);
-    Point* pt2 = new Point(10,10);
-    Dijkstra star(pt1, pt2, "./tests/TEST_MAP.csv");
+    Point* pt1 = new Point(116.3115702,39.9746749);
+    Point* pt2 = new Point(116.3117415, 39.9746731);
+    Dijkstra star(pt1, pt2, "./tests/s1.csv");
    // std::vector<Road*> testt = star.getSurroundPoints(pt1);
     //std::cout << testt.size() << std::endl;
     // std::cout << star.map_->vertices.size() << std::endl;
@@ -139,6 +138,8 @@ int main() {
     // }
     // std::cout << test_road.size() << std::endl;
     // std::cout << star.calcH(pt1) << std::endl;
+    cout<<"direct dis: "<<pt1->distance(pt2)<<endl;
+    star.print_path();
     return 0;
 }
 
