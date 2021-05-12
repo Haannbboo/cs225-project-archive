@@ -57,6 +57,7 @@ class MapDrawer {
         void drawVerticalLine(Cord c1, Cord c2, Color color);
         void drawHorizontalLine(Cord c1, Cord c2, Color color);
         void drawZigZags(Cord c1, Cord c2, Color color);
+        void drawBigPoint(Point* p1, int factor, Color color);  // emphasize the start & end point
 
 
         void drawLine(Cord c1, Cord c2, Color color);  // for debugging only
