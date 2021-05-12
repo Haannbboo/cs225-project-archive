@@ -8,6 +8,9 @@ Our project can be divided into the following part under the src folder:
 
 
 1. DataLoader
+
+This part has the functionality of translating csv file into std::string that can be furthered processed into data that can be used in our program. 
+
 2. data
 3. cs225
 4. algorithms
