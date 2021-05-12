@@ -3,6 +3,8 @@
 #include <cstdlib>
 #pragma once
 
+enum {MINWIDTH = 800, MINHEIGHT = 600, MINDIAG = 1000};
+
 
 class MapDrawer {
     private:
@@ -12,7 +14,12 @@ class MapDrawer {
     private:
         Point* corner1;  // upper-left corner
         Point* corner2;  // lower-right corner
+        Point* corner3;  // upper-right corner
+        Point* corner4;  // lower-left corner
         std::map<Road*, bool> roadsDrawn;
+
+        int width;
+        int height;
 
     public:  // for testing only
         struct Cord {
@@ -44,6 +51,7 @@ class MapDrawer {
         Cord convertCord(Point* point);  // convert a geo cord to the (x, y) on PNG
         bool withinCanvas(Point* point);  // if point is within the (p1, p2) range
         void clear();
+        void findEdgePoints(std::vector<Point*> points);
 
         void drawLine(Point* p1, Point* p2, Color color);  // draw a STRAIGHT line from p1 to p2
         void drawVerticalLine(Cord c1, Cord c2, Color color);
