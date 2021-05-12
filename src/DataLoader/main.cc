@@ -1,5 +1,6 @@
 #include "dataLoader.h"
 #include <iostream>
+#include "../algorithms/Dijkstra.h"
 using namespace std;
 
 

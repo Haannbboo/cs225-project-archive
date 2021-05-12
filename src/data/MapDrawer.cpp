@@ -1,5 +1,8 @@
 #include "MapDrawer.h"
-
+#include <stdlib.h>
+#include <cmath>
+#include <cstdlib>
+#include <type_traits>
 
 MapDrawer::MapDrawer(unsigned width, unsigned height) {
     canvas = new cs225::PNG(width, height);
@@ -210,7 +213,6 @@ void MapDrawer::drawZigZags(MapDrawer::Cord c1, MapDrawer::Cord c2, MapDrawer::C
             c2 = ctemp;
         }
     }
-
     int dx = abs(c2.x - c1.x);
     int dy = abs(c2.y - c1.y);
 

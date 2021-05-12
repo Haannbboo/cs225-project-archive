@@ -1,7 +1,7 @@
 #include "data/Map.h"
 #include "data/Road.h"
 #include "data/MapDrawer.h"
-
+#include "algorithms/Dijkstra.h"
 #include "algorithms/Astar.h"
 
 #include <iostream>
@@ -35,10 +35,10 @@ int main() {
     std::cout << geoInfo << std::endl;
     */
 
-    Map m("./DataLoader/shape.csv");
-    std::cout << m.vertices.size() << std::endl;
-    std::cout << m.points.size() << std::endl;
-    std::cout << m.roads.size() << std::endl;
+    // Map m("./DataLoader/shape.csv");
+    // std::cout << m.vertices.size() << std::endl;
+    // std::cout << m.points.size() << std::endl;
+    // std::cout << m.roads.size() << std::endl;
     //Road* road = m.roads[2];
 
 /***
@@ -127,19 +127,19 @@ int main() {
     ***/
     Point* pt1 = new Point(0,0);
     Point* pt2 = new Point(10,10);
-    Astar star(pt1, pt2, "./tests/TEST_MAP.csv");
+    Dijkstra star(pt1, pt2, "./tests/TEST_MAP.csv");
    // std::vector<Road*> testt = star.getSurroundPoints(pt1);
     //std::cout << testt.size() << std::endl;
-    std::cout << star.map_->vertices.size() << std::endl;
-    std::cout << star.map_->points.size() << std::endl;
-    std::cout << star.map_->roads.size() << std::endl;
-    std::vector<Road*> test_road = star.getSurroundPoints(star.map_->findPoint(5,5));
-    for (auto r : test_road) {
-        std::cout << r->id_ << std::endl;
-    }
-    std::cout << test_road.size() << std::endl;
-    std::cout << star.calcH(pt1) << std::endl;
-
+    // std::cout << star.map_->vertices.size() << std::endl;
+    // std::cout << star.map_->points.size() << std::endl;
+    // std::cout << star.map_->roads.size() << std::endl;
+    // std::vector<Road*> test_road = star.getSurroundPoints(star.map_->findPoint(5,5));
+    // for (auto r : test_road) {
+    //     std::cout << r->id_ << std::endl;
+    // }
+    // std::cout << test_road.size() << std::endl;
+    // std::cout << star.calcH(pt1) << std::endl;
+    star.print_path();
     return 0;
 }
 

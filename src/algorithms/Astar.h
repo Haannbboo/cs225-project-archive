@@ -20,7 +20,6 @@ class Astar {
     double calcF(Road* road, Point* point);
     Point* getLeastFpoint();
     bool isInList(const Point* point) const;
-    bool isInCloseList(const Point* point) const;
     Point* isInList() const;
     Point* findPath();
     void getPath();
