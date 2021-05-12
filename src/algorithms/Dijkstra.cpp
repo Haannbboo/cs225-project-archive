@@ -17,11 +17,11 @@
     visited_points.push_back(start);
     while(cur != destination){
         Point* currentpoint = findnearstpoint();
-        currentpoint->visited = true;
+        // currentpoint->visited = true;
         cur = currentpoint;
         visited_points.push_back(cur);
         cout<<"reach21"<<endl;
-        road.push_back("point:"+ to_string(cur->x)+" "+to_string(cur->y));
+        road.push_back("point:");
     }
 }
 
@@ -51,10 +51,15 @@ Point* Dijkstra::findnearstpoint(){
 void Dijkstra::getpoints(Point * a) { //add all unvisited point to a's connected point group
     vector<Road*> roads = map_->incidentRoads(a);
     for(auto road:roads){
-        Point * end = road->otherSide(a);
-        if(end->visited == false){
-            a->connectedpts.push_back(end);
+        Point * otherside = road->otherSide(a);
+        bool flag = true;
+        for(auto point:visited_points){ //check if the point is visited before
+            if(point == otherside)
+                flag = false;
         }
+        if(flag == true) //if the point is not visited before, then add
+            a->connectedpts.push_back(otherside);
+        
     }
 
 }
