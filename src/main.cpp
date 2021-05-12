@@ -139,7 +139,6 @@ int main() {
     // }
     // std::cout << test_road.size() << std::endl;
     // std::cout << star.calcH(pt1) << std::endl;
-    star.print_path();
     return 0;
 }
 
