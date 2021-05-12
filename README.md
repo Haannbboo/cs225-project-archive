@@ -71,11 +71,15 @@ Binary Heap taken from http://eloquentjavascript.net/appendix2.html (license: ht
 
 ## Running the test suite
 
-[![Build Status](https://travis-ci.org/bgrins/javascript-astar.png?branch=master)](https://travis-ci.org/bgrins/javascript-astar)
+To run the test, you can
 
-If you don't have grunt installed, follow the [grunt getting started guide](http://gruntjs.com/getting-started) first.
+		make test
+		./test
 
-Pull down the project, then run:
 
-		npm install
-		grunt
+If you want to use the navigation application in Beijing, you need to first enter the location of the point in main.cpp, and then
+
+		make
+		./main
+
+Then you are able see that a png picture has been drawn in the folder. 
