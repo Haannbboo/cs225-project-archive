@@ -8,7 +8,11 @@
 #include <iostream>
 #include <functional>
 #include <utility>
-
+ Dijkstra::Dijkstra(Point* a, Point* b,  Map* m){
+    start_ = a;
+    destination_ = b;
+    map_ = m;
+}
  Dijkstra::Dijkstra(Point* start, Point* destination, string filename){
     
     Map* m = new Map(filename);
