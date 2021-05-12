@@ -54,12 +54,14 @@ void MapDrawer::findEdgePoints(std::vector<Point*> points) {
     for (auto r: points) {
         if (r->x < minx) {
             minx = r->x;
-        } else if (r->x > maxx) {
+        } 
+        if (r->x > maxx) {
             maxx = r->x;
         }
         if (r->y < miny) {
             miny = r->y;
-        } else if (r->y > maxy) {
+        } 
+        if (r->y > maxy) {
             maxy = r->y;
         }
     }
