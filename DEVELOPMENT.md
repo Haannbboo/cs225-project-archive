@@ -4,9 +4,29 @@
 - Gathered and validated data quality.
 - Confirmed reliability of data source.
 - Did research on related algorithm(Astar, Dijkstra, Dstar) 
- 
+- Writing test cases and debuged codes we've already done.
+
 # Week 2
 - Created Map, Point, Road class for our project. Map represents the map we run graph algorithms on together with some methods that is able to interact with point and map class. A point class contians the name of the place, the best estimate of distance to this point, a vector of points connected to this point etc. An road class mainly describe the road name, lengh, w/o brisge, if it's on way and some other properties of it.
+- Cleaned the data we'd collected, mainly though deleting unnecesary and NA data points.
 - Based on the data source we got from last week, we read the data csv file without using any non-standard library in C++. We created a class called line to store all records of data in the csv file. Line class contians a data point class which is basically just one record of data point and use vectior to store the data point class we created.
+- Writing test cases and debuged codes we've already done.
+- Check efficiency of our algorithms.
 
 # Week 3
+- Integrate DataLoader and Map/point/Road class together, so that we can use a better way to store our data.
+- Introduce CS225 PNG and some exsisting classes into our code base.
+- Get started and finished building Dstar algorithm.
+- Get started and finished building Dijkstra algorithm.
+- Trying to figuring out how to implement Astar algorithm.
+- Writing test cases and debuged codes we've already done.
+- Check efficiency of our algorithms.
+
+# Week 4
+- Get started and finished building Astar algorithm.
+- Feed data to Astar, Dijkstra, Dstar algorithms.
+- Write codes to draw a simple result for our program.
+- Writing test cases and debuged codes we've already done.
+- Check efficiency of our algorithms.
+
+
