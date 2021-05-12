@@ -3,6 +3,12 @@
 #include <stdlib.h> 
 
 
+Astar::Astar(Point* A, Point* B, Map* map) {
+    start_ = A;
+    destination_ = B;;
+    map_ = map;
+}
+
 Astar::Astar(Point* A, Point* B, std::string filename) {
     start_ = A;
     destination_ = B;

@@ -14,6 +14,7 @@ class Astar {
     public:
     Astar();
     Astar(Point* start, Point* des, std::string filename);
+    Astar(Point* start, Point* des, Map* map);
     std::vector<Road*> getSurroundPoints(Point* point);
     double calcG(Point* A, Road* R);
     double calcH(Point* A);
