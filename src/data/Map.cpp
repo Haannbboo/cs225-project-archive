@@ -137,6 +137,10 @@ void Map::loadVertex(Road* road) {
 }
 
 std::vector<Road*> Map::incidentRoads(Point* point) {
+    std::pair<double, double> xy = std::make_pair(point->x, point->y);
+    if (pointsMap.find(xy) != pointsMap.end()) {
+        point = pointsMap.at(xy);
+    }
     if (vertices.find(point) == vertices.end()) {
         // when point is not in Map
         std::vector<Road*> r;
