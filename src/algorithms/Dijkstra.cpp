@@ -14,11 +14,11 @@
     Map* m = new Map(filename);
     map_ = m;
     Point* cur = start; //initialize current point
-    cur->visited = true;
     visited_points.push_back(start);
     while(cur != destination){
-        cur = findnearstpoint();
-        cur->visited = true;
+        Point* currentpoint = findnearstpoint();
+        currentpoint->visited = true;
+        cur = currentpoint;
         visited_points.push_back(cur);
         cout<<"reach21"<<endl;
         road.push_back("point:"+ to_string(cur->x)+" "+to_string(cur->y));
