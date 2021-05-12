@@ -25,6 +25,8 @@ class Astar {
     Point* findPath();
     void getPath();
     void print_path(Point* point);
+    std::vector<Point*> points_in_path();
+    std::vector<Point*> points_in_path(Point* point);
 
     // FUNCTIONS FOR TESTING
     void ToOpenList(Point* point);

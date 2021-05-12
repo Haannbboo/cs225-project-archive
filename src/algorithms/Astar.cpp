@@ -139,6 +139,22 @@ void Astar::print_path(Point* point) {
     std::cout << "---- FINISHED ----" << std::endl;
 }
 
+std::vector<Point*> Astar::points_in_path() {
+    return points_in_path(findPath());
+}
+
+std::vector<Point*> Astar::points_in_path(Point* point) {
+    std::vector<Point*> result;
+    if (point==nullptr) return result;
+    while(point->parent!=nullptr) {
+        result.push_back(point);
+        point = point->parent; 
+    }
+    result.push_back(point);
+    return result;
+}
+
+
 void Astar::ToOpenList(Point* point) {
     openList.push_back(point);
 }
@@ -146,3 +162,4 @@ void Astar::ToOpenList(Point* point) {
 void Astar::ToPath(Point* point) {
     path_.push_back(point);
 }
+
