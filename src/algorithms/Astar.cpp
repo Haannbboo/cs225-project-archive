@@ -18,11 +18,11 @@ Astar::Astar(Point* A, Point* B, Map* map) {
 
 double Astar::calcG(Point* A, Road* R) {
     if (A->parent==nullptr) return R->length_;
-    else return A->G + R->length_;
+    else return A->parent->G + R->length_;
 }
 
 double Astar::calcH(Point* A) {
-    return destination_->distance(A);
+    return destination_->distance(A)*2;
 }; // this is equavilent to calculate distance between A and B;
 
 double Astar::calcF(Road* road, Point* point) 
@@ -56,12 +56,16 @@ Point* Astar::findPath()
                  r->otherSide(curPoint)->parent=curPoint;
                  std::cout << "Child: " << r->otherSide(curPoint)->x << " | "<<r->otherSide(curPoint)->y << std::endl;
                  std::cout << "Parent: " << curPoint->x << " | " << curPoint->y << std::endl;
+
                  r->otherSide(curPoint)->F = calcF(r,r->otherSide(curPoint));
-                 std::cout << "F: " << calcF(r,curPoint) << std::endl;
+                 std::cout << "F: " << calcF(r,r->otherSide(curPoint)) << std::endl;
+
                  r->otherSide(curPoint)->G = calcG(r->otherSide(curPoint), r);
-                 std::cout << "G: " << calcG(curPoint,r) << std::endl;
+                 std::cout << "G: " << calcG(r->otherSide(curPoint),r) << std::endl;
+
                  r->otherSide(curPoint)->H = calcH(r->otherSide(curPoint));
                  std::cout << "H: " << calcH(r->otherSide(curPoint)) << std::endl;
+
                  openList.push_back(r->otherSide(curPoint)); 
              } 
              else 
@@ -141,7 +145,7 @@ void Astar::print_path(Point* point) {
         //std::cout << "Road:  " << map_->roadsMap.at(r1)->id_ << "\n" << std::endl;
         point = point->parent;
     }
-    std::cout << "Point:  "<< point->x << "  |  " << point->y << "\n" <<std::endl;
+    std::cout << "Point:  "<< point->x<< "  |  " << point->y << "\n" <<std::endl;
     std::cout << "---- FINISHED ----" << std::endl;
 }
 
