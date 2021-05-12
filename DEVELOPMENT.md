@@ -10,6 +10,8 @@ Useful link that I have found:
 https://www.cs.cmu.edu/~motionplanning/lecture/Asearch_v8.pdf
 https://www.cs.cmu.edu/~motionplanning/lecture/AppH-astar-dstar_howie.pdf
 
+I found some sample code on github and some interesting visualization of A* algorithm so that I can understand how it works and embark on writing my own A* algorithm for navigation. 
+
 
 # Week 2
 - Created Map, Point, Road class for our project. Map represents the map we run graph algorithms on together with some methods that is able to interact with point and map class. A point class contians the name of the place, the best estimate of distance to this point, a vector of points connected to this point etc. An road class mainly describe the road name, lengh, w/o brisge, if it's on way and some other properties of it.
