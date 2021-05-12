@@ -23,6 +23,11 @@ class MapDrawer {
             double x;
             double y;
         };
+        struct Color {
+            Color(): h(0), s(1), l(1), a(0) { }
+            Color(double h, double s, double l, double a): h(h), s(s), l(l), a(a) { }
+            double h, s, l, a;
+        };
     
     public:
         MapDrawer(unsigned width, unsigned height);  // for debugging only
@@ -33,19 +38,19 @@ class MapDrawer {
         
         void drawMap();
         void drawMap(Point* p1, Point* p2);
-        cs225::PNG* drawMapWithPath(Point* p1, Point* p2);
+        void drawMapWithSolution(std::vector<Point*> points);
 
     public:
         Cord convertCord(Point* point);  // convert a geo cord to the (x, y) on PNG
         bool withinCanvas(Point* point);  // if point is within the (p1, p2) range
         void clear();
 
-        void drawLine(Point* p1, Point* p2);  // draw a STRAIGHT line from p1 to p2
-        void drawVerticalLine(Cord c1, Cord c2);
-        void drawHorizontalLine(Cord c1, Cord c2);
-        void drawZigZags(Cord c1, Cord c2);
+        void drawLine(Point* p1, Point* p2, Color color);  // draw a STRAIGHT line from p1 to p2
+        void drawVerticalLine(Cord c1, Cord c2, Color color);
+        void drawHorizontalLine(Cord c1, Cord c2, Color color);
+        void drawZigZags(Cord c1, Cord c2, Color color);
 
 
-        void drawLine(Cord c1, Cord c2);  // for debugging only
+        void drawLine(Cord c1, Cord c2, Color color);  // for debugging only
 
 };

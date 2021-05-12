@@ -78,7 +78,7 @@ void MapDrawer::drawMap(Point* p1, Point* p2) {
         std::vector<Road*> roads = cityMap->incidentRoads(p);
         for (auto road: roads) {
             if (roadsDrawn.find(road) == roadsDrawn.end()) {
-                drawLine(p, road->otherSide(p));
+                drawLine(p, road->otherSide(p), Color());
                 roadsDrawn[road] = true;
             }
         }
@@ -114,30 +114,45 @@ void MapDrawer::drawMap() {
     drawMap(corner1, corner2);
 }
 
-void MapDrawer::drawLine(Point* p1, Point* p2) {
+void MapDrawer::drawMapWithSolution(std::vector<Point*> roads) {
+    if (roads.size() < 2) {
+        return;
+    }
+    Point* p1 = roads[0];
+    Point* p2 = roads.back();
+    drawMap();
+
+    Color color(0, 1, 0.5, 1);
+    
+    for (size_t i = 0; i < roads.size() - 1; i++) {
+        drawLine(roads[i], roads[i+1], color);
+    }
+}
+
+void MapDrawer::drawLine(Point* p1, Point* p2, Color color) {
     Cord c1 = convertCord(p1);
     Cord c2 = convertCord(p2);
 
     if (c1.x == c2.x) {  // draw a vertical line
-        drawVerticalLine(c1, c2);
+        drawVerticalLine(c1, c2, color);
     } else if (c1.y == c2.y) {  // draw a horizontal line
-        drawHorizontalLine(c1, c2);
+        drawHorizontalLine(c1, c2, color);
     } else {
-        drawZigZags(c1, c2);  // draw slash line
+        drawZigZags(c1, c2, color);  // draw slash line
     }
 }
 
-void MapDrawer::drawLine(MapDrawer::Cord c1, MapDrawer::Cord c2) {
+void MapDrawer::drawLine(MapDrawer::Cord c1, MapDrawer::Cord c2, MapDrawer::Color color) {
     if (c1.x == c2.x) {  // draw a vertical line
-        drawVerticalLine(c1, c2);
+        drawVerticalLine(c1, c2, color);
     } else if (c1.y == c2.y) {  // draw a horizontal line
-        drawHorizontalLine(c1, c2);
+        drawHorizontalLine(c1, c2, color);
     } else {
-        drawZigZags(c1, c2);  // draw slash line
+        drawZigZags(c1, c2, color);  // draw slash line
     } 
 }
 
-void MapDrawer::drawVerticalLine(MapDrawer::Cord c1, MapDrawer::Cord c2) {
+void MapDrawer::drawVerticalLine(MapDrawer::Cord c1, MapDrawer::Cord c2, MapDrawer::Color color) {
     // c1.x == c2.x now
     if (c1.y > c2.y) {
         double temp = c1.y;
@@ -148,14 +163,14 @@ void MapDrawer::drawVerticalLine(MapDrawer::Cord c1, MapDrawer::Cord c2) {
     // drawing vertically downwards
     for (size_t i = 0; i <= c2.y - c1.y; i++) {
         cs225::HSLAPixel& pixel = canvas->getPixel(c1.x, c1.y+i);
-        pixel.h = 0;
-        pixel.s = 1;
-        pixel.l = 0.5;
-        pixel.a = 1;
+        pixel.h = color.h;
+        pixel.s = color.s;
+        pixel.l = color.l;
+        pixel.a = color.a;
     }
 }
 
-void MapDrawer::drawHorizontalLine(MapDrawer::Cord c1, MapDrawer::Cord c2) {
+void MapDrawer::drawHorizontalLine(MapDrawer::Cord c1, MapDrawer::Cord c2, MapDrawer::Color color) {
     // c1.y == c2.y now
     if (c1.x > c2.x) {
         double temp = c1.x;
@@ -166,14 +181,14 @@ void MapDrawer::drawHorizontalLine(MapDrawer::Cord c1, MapDrawer::Cord c2) {
     // drawing horizontally rightwards
     for (size_t i = 0; i <= c2.x - c1.x; i++) {
         cs225::HSLAPixel& pixel = canvas->getPixel(c1.x+i, c1.y);
-        pixel.h = 0;
-        pixel.s = 1;
-        pixel.l = 0.5;
-        pixel.a = 1;
+        pixel.h = color.h;
+        pixel.s = color.s;
+        pixel.l = color.l;
+        pixel.a = color.a;
     }
 }
 
-void MapDrawer::drawZigZags(MapDrawer::Cord c1, MapDrawer::Cord c2) {
+void MapDrawer::drawZigZags(MapDrawer::Cord c1, MapDrawer::Cord c2, MapDrawer::Color color) {
     // always draw from c1 to c2
     
     bool opposite;
@@ -204,10 +219,10 @@ void MapDrawer::drawZigZags(MapDrawer::Cord c1, MapDrawer::Cord c2) {
 
     while (dx >= 0 && dy >= 0) {
         cs225::HSLAPixel& pixel = canvas->getPixel(x, y);
-        pixel.h = 0;
-        pixel.s = 1;
-        pixel.l = 0.5;
-        pixel.a = 1;
+        pixel.h = color.h;
+        pixel.s = color.s;
+        pixel.l = color.l;
+        pixel.a = color.a;
         if (dx > dy) {
             dx--;
             if (opposite) x--;
