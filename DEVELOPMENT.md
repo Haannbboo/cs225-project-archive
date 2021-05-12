@@ -30,3 +30,10 @@
 - Check efficiency of our algorithms.
 
 
+# Week 5
+- Constructed final debugging.
+- Check and finsih the rest test cases, and think about edge cases of our programs.
+- Write codes to be able to draw complete result for our program.
+- Check efficiency of our algorithms.
+- clean our repositories and make our codes comply the same style and formats.
+- Preparing and  writing outlines for our final project video.
