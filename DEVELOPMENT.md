@@ -6,6 +6,11 @@
 - Did research on related algorithm(Astar, Dijkstra) 
 - Writing test cases and debuged codes we've already done (mainly about how to process csv dataset into std::string. Algorithms design is under study and research).
 
+Useful link that I have found:
+https://www.cs.cmu.edu/~motionplanning/lecture/Asearch_v8.pdf
+https://www.cs.cmu.edu/~motionplanning/lecture/AppH-astar-dstar_howie.pdf
+
+
 # Week 2
 - Created Map, Point, Road class for our project. Map represents the map we run graph algorithms on together with some methods that is able to interact with point and map class. A point class contians the name of the place, the best estimate of distance to this point, a vector of points connected to this point etc. An road class mainly describe the road name, lengh, w/o brisge, if it's on way and some other properties of it.
 - Cleaned the data we'd collected, mainly though deleting unnecesary and NA data points.
