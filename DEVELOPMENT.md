@@ -1,9 +1,9 @@
 # Week 1
 
-- Constructed main structure and came up with appropriate algorithms for our project (Astar, Dijkstra, Dstar)
+- Constructed main structure and came up with appropriate algorithms for our project (Astar, Dijkstra)
 - Gathered and validated data quality.
 - Confirmed reliability of data source.
-- Did research on related algorithm(Astar, Dijkstra, Dstar) 
+- Did research on related algorithm(Astar, Dijkstra) 
 - Writing test cases and debuged codes we've already done.
 
 # Week 2
@@ -24,7 +24,7 @@
 
 # Week 4
 - Get started and finished building Astar algorithm.
-- Feed data to Astar, Dijkstra, Dstar algorithms.
+- Feed data to Astar, Dijkstra algorithms.
 - Write codes to draw a simple result for our program.
 - Writing test cases and debuged codes we've already done.
 - Check efficiency of our algorithms.
