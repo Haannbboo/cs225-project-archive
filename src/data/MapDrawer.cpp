@@ -45,7 +45,32 @@ void MapDrawer::save(std::string fpath) {
     canvas->writeToFile(fpath);
 }
 
+void MapDrawer::findEdgePoints(std::vector<Point*> points) {
+    double minx, miny, maxx, maxy;
+    minx = 10000;
+    miny = 10000;
+    maxx = 0;
+    maxy = 0;
+    for (auto r: points) {
+        if (r->x < minx) {
+            minx = r->x;
+        } else if (r->x > maxx) {
+            maxx = r->x;
+        }
+        if (r->y < miny) {
+            miny = r->y;
+        } else if (r->y > maxy) {
+            maxy = r->y;
+        }
+    }
+    corner1 = new Point(minx, maxy);
+    corner2 = new Point(maxx, miny);
+    corner3 = new Point(maxx, maxy);
+    corner4 = new Point(minx, miny);
+}
+
 void MapDrawer::drawMap(Point* p1, Point* p2) {
+    /*
     // set corners
     if (p1->x < p2->x && p1->y > p2->y) {
         corner1 = p1;
@@ -58,15 +83,12 @@ void MapDrawer::drawMap(Point* p1, Point* p2) {
         std::cout << p2->x << ", " << p2->y << std::endl;
         return;
     }
+    */
 
     // first determining the size of the canvas
-    Point* temp2 = new Point(corner2->x, corner1->y);
-    int width = corner1->distance(temp2);
-    delete temp2;
+    width = corner1->distance(corner3);
+    height = corner2->distance(corner3);
 
-    Point* temp1 = new Point(corner2->x, corner1->y);
-    int height = temp1->distance(corner2);
-    delete temp1;
     std::cout << width << ", " << height << std::endl;
     canvas = new cs225::PNG(width, height);
     
@@ -94,41 +116,33 @@ void MapDrawer::drawMap(Point* p1, Point* p2) {
 }
 
 void MapDrawer::drawMap() {
-    double minx, miny, maxx, maxy;
-    minx = 10000;
-    miny = 10000;
-    maxx = 0;
-    maxy = 0;
-    for (auto r: cityMap->points) {
-        if (r->x < minx) {
-            minx = r->x;
-        } else if (r->x > maxx) {
-            maxx = r->x;
-        }
-        if (r->y < miny) {
-            miny = r->y;
-        } else if (r->y > maxy) {
-            maxy = r->y;
-        }
-    }
-    corner1 = new Point(minx, maxy);
-    corner2 = new Point(maxx, miny);
+    findEdgePoints(cityMap->points);
 
     drawMap(corner1, corner2);
 }
 
-void MapDrawer::drawMapWithSolution(std::vector<Point*> roads) {
-    if (roads.size() < 2) {
+void MapDrawer::drawMapWithSolution(std::vector<Point*> points) {
+    if (points.size() < 2) {
         return;
     }
-    Point* p1 = roads[0];
-    Point* p2 = roads.back();
-    drawMap();
+    
+    findEdgePoints(points);
+    if (corner1->distance(corner2) < MINDIAG) {
+        // when the start & destination are too close
+        double currentWidth = corner1->distance(corner3);
+        if (currentWidth < MINWIDTH) {
+            // we need to find two Point that have a distance about MINWIDTH
+
+        }
+        double currentHeight = corner1->distance(corner2);
+    }
+
+    drawMap(corner1, corner2);
 
     Color color(0, 1, 0.5, 1);
     
-    for (size_t i = 0; i < roads.size() - 1; i++) {
-        drawLine(roads[i], roads[i+1], color);
+    for (size_t i = 0; i < points.size() - 1; i++) {
+        drawLine(points[i], points[i+1], color);
     }
 }
 
@@ -165,6 +179,9 @@ void MapDrawer::drawVerticalLine(MapDrawer::Cord c1, MapDrawer::Cord c2, MapDraw
 
     // drawing vertically downwards
     for (size_t i = 0; i <= c2.y - c1.y; i++) {
+        if (c1.x >= width || c1.y+i >= height) {
+            continue;
+        }
         cs225::HSLAPixel& pixel = canvas->getPixel(c1.x, c1.y+i);
         pixel.h = color.h;
         pixel.s = color.s;
@@ -183,6 +200,9 @@ void MapDrawer::drawHorizontalLine(MapDrawer::Cord c1, MapDrawer::Cord c2, MapDr
 
     // drawing horizontally rightwards
     for (size_t i = 0; i <= c2.x - c1.x; i++) {
+        if (c1.x+i >= width || c1.y >= height) {
+            continue;
+        }
         cs225::HSLAPixel& pixel = canvas->getPixel(c1.x+i, c1.y);
         pixel.h = color.h;
         pixel.s = color.s;
@@ -220,11 +240,13 @@ void MapDrawer::drawZigZags(MapDrawer::Cord c1, MapDrawer::Cord c2, MapDrawer::C
     int y = c1.y;
 
     while (dx >= 0 && dy >= 0) {
-        cs225::HSLAPixel& pixel = canvas->getPixel(x, y);
-        pixel.h = color.h;
-        pixel.s = color.s;
-        pixel.l = color.l;
-        pixel.a = color.a;
+        if (x < width && y < height) {
+            cs225::HSLAPixel& pixel = canvas->getPixel(x, y);
+            pixel.h = color.h;
+            pixel.s = color.s;
+            pixel.l = color.l;
+            pixel.a = color.a;
+        }
         if (dx > dy) {
             dx--;
             if (opposite) x--;
