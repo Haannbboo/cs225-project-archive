@@ -33,17 +33,18 @@ This file include three different test cases for data, Dijkstra algorithm, and A
 ## Full instructions on how to build and run your executable, including how to define the input data and output location for each method.
 
 ```js
-    Point* start = new Point(116.2812022, 39.9708235);
-    Point* destination = new Point(116.4015409, 40.0011546);
+    Point* start = new Point(116.2812022, 39.9708235); //create the start point using Geographic coordinate. 
+    Point* destination = new Point(116.4015409, 40.0011546); // create the destination point using Geographic coordinate. 
+    // One thing to notice is that the point has to be the point in the csv file. Otherwise the navigation application may not be able to locate where to start or where to end
     std::string filename = "./src/shape.csv";
-    Map* m = new Map(filename);
-    Astar star(start,destination,m);
-    star.print_path(star.findPath());
+    Map* m = new Map(filename);  // set a Map pointer
+    Astar star(start,destination,m); //constructor
+    star.print_path(star.findPath());  // first find the path, and then print the path 
 
-    MapDrawer drawer(m);
-    drawer.drawMapWithSolution(points);
-    drawer.save("navigation_result.png");
-</script>
+    MapDrawer drawer(m); // set up a MapDrawer
+    std::vector<Point*> points = star.points_in_path();
+    drawer.drawMapWithSolution(points); // draw all the points in the path 
+    drawer.save("navigation_result.png"); // save the png picture on your computer
 ```
 
 
