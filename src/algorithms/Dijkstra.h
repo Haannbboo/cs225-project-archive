@@ -15,6 +15,7 @@ class Dijkstra{
     //void InitAstar(std::vector<std::vector<int>> &_maze); 
     Dijkstra();
     Dijkstra(Point* start,Point* destination, string filename);
+    Dijkstra(Point* a, Point* b,  Map* m);
     //void MazeToAdjMatrix(std::vector<std::vector<int>> &_maze);
     Point* findnearstpoint(); //find and return the nearst point to a point
     double distance(Point* a, Point* b); //the distance between two points
@@ -22,7 +23,7 @@ class Dijkstra{
     void getPath();
     void getpoints(Point *a);
     private:
-    vector<string> road;
+    vector<Point*> road;
     Point* start_;
     Point* destination_;
     std::vector<Point*> path_;
