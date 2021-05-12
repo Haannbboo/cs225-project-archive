@@ -1,19 +1,8 @@
-# mqiu3-daweix3-hanbog2-lurenw2
 
-(1) The location of all major code, data, and results. 
 
-(2) Full instructions on how to build and run your executable, including how to define the input data and output location for each method. 
-
-(3) Full instructions how to build and run your test suite, including a general description on what tests you have created. It is in your best interest to make the instructions (and the running of your executables and tests) as simple and straightforward as possible.
-
-There are three test suites for the program
-- TEST SUITE FOR DATA 
-- 
-
-#  mqiu3-daweix3-hanbog2-lurenw2 CS225 Navigation in the City of Beijing
+#  mqiu3-daweix3-hanbog2-lurenw2 | CS225 Navigation in the City of Beijing
 
 ## The location of all major code, data, and results.
-
 
 ## Full instructions on how to build and run your executable, including how to define the input data and output location for each method. 
 
@@ -21,32 +10,6 @@ There are three test suites for the program
 
 If you want just the A* search code (not the demo visualization), use code like this http://gist.github.com/581352
 ```js
-<script type='text/javascript' src='astar.js'></script>
-<script type='text/javascript'>
-	var graph = new Graph([
-		[1,1,1,1],
-		[0,1,1,0],
-		[0,0,1,1]
-	]);
-	var start = graph.grid[0][0];
-	var end = graph.grid[1][2];
-	var result = astar.search(graph, start, end);
-	// result is an array containing the shortest path
-	var graphDiagonal = new Graph([
-		[1,1,1,1],
-		[0,1,1,0],
-		[0,0,1,1]
-	], { diagonal: true });
-	
-	var start = graphDiagonal.grid[0][0];
-	var end = graphDiagonal.grid[1][2];
-	var resultWithDiagonals = astar.search(graphDiagonal, start, end, { heuristic: astar.heuristics.diagonal });
-	// Weight can easily be added by increasing the values within the graph, and where 0 is infinite (a wall)
-	var graphWithWeight = new Graph([
-		[1,1,2,30],
-		[0,4,1.3,0],
-		[0,0,5,1]
-	]);
 	var startWithWeight = graphWithWeight.grid[0][0];
 	var endWithWeight = graphWithWeight.grid[1][2];
 	var resultWithWeight = astar.search(graphWithWeight, startWithWeight, endWithWeight);
