@@ -141,8 +141,8 @@ int main() {
     //star.map_->findPoint(5,5)->parent = star.map_->findPoint(0,0);
     //star.print_path(star.findPath());
 
-    Point* p3 = new Point(116.4189201, 39.9578917);
-    Point* p4 = new Point(116.4255741, 39.9581549);
+    Point* p3 = new Point(116.2918073, 39.9730407);
+    Point* p4 = new Point(116.3934609, 39.8988716);
     Astar star(p3, p4, "./DataLoader/shape.csv");
     star.print_path(star.findPath());
 
