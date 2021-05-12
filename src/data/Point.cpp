@@ -4,6 +4,8 @@
 Point:: Point(){
     this->x = 0;
     this->y = 0;
+    best_estimate = 999999;
+    visited = false;
 }
 
 Point::Point(double x, double y){
@@ -13,6 +15,8 @@ Point::Point(double x, double y){
     H = 0.0;
     F = 0.0;
     parent = nullptr;
+    best_estimate = 999999;
+    visited = false;
 }
 
 bool Point::operator==(const Point &other) const{

@@ -1,7 +1,7 @@
 #include "data/Map.h"
 #include "data/Road.h"
 #include "data/MapDrawer.h"
-
+#include "algorithms/Dijkstra.h"
 #include "algorithms/Astar.h"
 
 #include <iostream>
@@ -34,10 +34,10 @@ int main() {
     geoInfo.erase(0, comma_index+2);
     std::cout << geoInfo << std::endl; 
 
-    Map m("./DataLoader/shape.csv");
-    std::cout << m.vertices.size() << std::endl;
-    std::cout << m.points.size() << std::endl;
-    std::cout << m.roads.size() << std::endl;
+    // Map m("./DataLoader/shape.csv");
+    // std::cout << m.vertices.size() << std::endl;
+    // std::cout << m.points.size() << std::endl;
+    // std::cout << m.roads.size() << std::endl;
     //Road* road = m.roads[2];
 
 
