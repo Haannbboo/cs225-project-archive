@@ -4,6 +4,15 @@
 
 ## The location of all major code, data, and results.
 
+Our project can be divided into the following part under the src folder:
+
+1.DataLoader
+2.data
+3.cs225
+4.algorithms
+5.tests
+6.main.cpp
+
 ## Full instructions on how to build and run your executable, including how to define the input data and output location for each method. 
 
 ## Full instructions how to build and run your test suite, including a general description on what tests you have created. It is in your best interest to make the instructions (and the running of your executables and tests) as simple and straightforward as possible.
