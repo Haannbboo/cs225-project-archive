@@ -48,8 +48,8 @@ This file include three different test cases for data, Dijkstra algorithm, and A
 ```
 If you want to find the shortest path from Point* start to Point* end, you need to first define you point in main.cpp. Then, do the following instructions.
 
-		make
-		./main
+	make
+	./main
 
 Then you are able see that a png picture has been drawn in the folder. 
 
@@ -73,7 +73,7 @@ TEST_MAP.csv is a small graph including only 5 vertices and eight edges. If our 
 
 To run the test, you can
 
-		make test
-		./test
+	make test
+	./test
 to see if our algorithms are able to pass those test suite. 
  
