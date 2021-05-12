@@ -1,1 +1,71 @@
-TODO
+# RESULTS
+
+## Dijkstra Algorithm
+
+Our project can be divided into the following part under the src folder:
+
+
+1. DataLoader
+
+This part has the functionality of translating csv file into std::string that can be furthered processed into data that can be used in our program. 
+
+2. data
+
+A map is composed of single points as each location and each road is defined by two points (including points in the middle of the road). Therefore, the data folder has the functionality of processing csv file into our defined class: Point, Road, and Map. Each of these class has different kinds of functionalities to be used in our algorithm designs. The data folder also has the MapDrawer function that used the class developed by CS225 faulties and we have used this function throughout our CS225 class. By using this class, we are able to draw the map of Beijing and to visualize our result. 
+ 
+3. cs225
+
+Visualization class developed by CS225 fauclties. 
+
+4. algorithms
+
+Our application has two different algorithms to compute the shortest path from point A to point B for users: Dijkstra and A* algorithm.
+
+5. tests
+
+This file include three different test cases for data, Dijkstra algorithm, and Astar algorithm. How to run those tests is demonstrated later.
+
+6. main.cpp
+
+## Full instructions on how to build and run your executable, including how to define the input data and output location for each method.
+
+```js
+    Point* start = new Point(116.2812022, 39.9708235); //create the start point using Geographic coordinate. 
+    Point* destination = new Point(116.4015409, 40.0011546); // create the destination point using Geographic coordinate. 
+    // One thing to notice is that the point has to be the point in the csv file. Otherwise the navigation application may not be able to locate where to start or where to end
+    std::string filename = "./src/shape.csv";
+    Map* m = new Map(filename);  // set a Map pointer
+    Astar star(start,destination,m); //constructor
+    star.print_path(star.findPath());  // first find the path, and then print the path 
+
+    MapDrawer drawer(m); // set up a MapDrawer
+    std::vector<Point*> points = star.points_in_path();
+    drawer.drawMapWithSolution(points); // draw all the points in the path 
+    drawer.save("navigation_result.png"); // save the png picture on your computer
+```
+If you want to find the shortest path from Point* start to Point* end, you need to first define you point in main.cpp. Then, do the following instructions.
+
+	make
+	./main
+
+Then you are able see that a png picture has been drawn in the folder. 
+
+## A* (Astar) algorithm
+
+
+We use the catch module from CS225 to create our own test suite. Our team have created three tests for the application, which are 
+
+1. test_data.cpp
+2. test_dijkstra.cpp
+3. test_Astar.cpp
+
+
+
+TEST_MAP.csv is a small graph including only 5 vertices and eight edges. If our algorithms pass on this test, we can then use bigger dataset. s1.csv and s1.csv are part of Beijing, simply to try if the algorithm can run on this a small part of Beijing.  
+
+To run the test, you can
+
+	make test
+	./test
+to see if our algorithms are able to pass those test suite. 
+ 
