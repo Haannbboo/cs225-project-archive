@@ -2,14 +2,23 @@
 
 ## Dijkstra Algorithm
 
-TODO
-可以写一写如何设计这个算法
-它的优缺点
-跑在北京地图上的性能如何etc.
+The Dijkstra Algorithm is a BFS algorithm to find the shortest path from one point to another. The logic behind Dijkstra algorithm is to divide all points into two parts: visited and unvisited. The whole algorithm consists of several steps:
+1. check all points unvisited that's reachable from current visited points
+2. find the nearest point of all points visited
+3. update the estimate of that point (i.e the distance needed to get to that point from starting point)
+4. add that point into the "visited" group
+5. repeat step 1-4 until the destination is found.
+The whole algorithm is divided into several functions: 
+the constructor; the findnearestpoint function (to find the nearest of all points); the getpoints function (find all currently unvisited points of a point);
 
-```js
-NULL
-```
+Improvements and analysis
+
+The current algorithm can only tell the shortest estimate of one point to another, so from this algorithm we can't construct a visualization of the path. Instead we can only construct a graph of all nearest points collected (which in most case contains most points of the map). 
+
+The algorithm itself can be further imrpoved with the getpoints function. Currently everytime getpoints function is called it will try to clear all connected points of a point and add them again according to the status of the point (visited or not). Due to the point struct, this is still in progress.
+
+![image](dddd.png)
+
 
 
 ## A* (Astar) algorithm
