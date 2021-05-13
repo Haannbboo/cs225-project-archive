@@ -29,7 +29,7 @@ Visualization of nearest points on s1 dataset
          cout<<star.road[i]->x<<" "<<star.road[i]->y<<star.road[i]->best_estimate<<endl;
     }
     return 0;
-some points are tested, and the estimates are shown here.
+some points are tested, and the estimates are shown here ![file]tests.txt.
 
 ## A* (Astar) algorithm
 
