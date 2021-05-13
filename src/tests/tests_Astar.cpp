@@ -100,4 +100,6 @@ TEST_CASE("TEST getPath") {
 
     result = result->parent;
     REQUIRE(result->parent == nullptr); 
+    delete p1;
+    delete p2;
 }
