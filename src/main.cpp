@@ -123,27 +123,29 @@ int main() {
         std::cout << m.incidentRoads(i->first).size() << std::endl;
     }
     //std::cout << m.incidentRoads(m.vertices.end()->first).size() << std::endl;
-    ***/
-    Point* pt1 = new Point(116.3119966, 39.9738962);
-    Point* pt2 = new Point(116.3103266, 39.9829572);
-    Dijkstra star(pt1, pt2, "./tests/s1.csv");
-    Point* pt3 = new Point(116.3894407,39.9062721);
-    Point* pt4 = new Point(116.3894463,39.9060115);
-    Dijkstra star_(pt3, pt4, "./DataLoader/shape.csv");
-   // std::vector<Road*> testt = star.getSurroundPoints(pt1);
-    //std::cout << testt.size() << std::endl;
-    // std::cout << star.map_->vertices.size() << std::endl;
-    // std::cout << star.map_->points.size() << std::endl;
-    // std::cout << star.map_->roads.size() << std::endl;
-    // std::vector<Road*> test_road = star.getSurroundPoints(star.map_->findPoint(5,5));
-    // for (auto r : test_road) {
-    //     std::cout << r->id_ << std::endl;
-    // }
-    // std::cout << test_road.size() << std::endl;
-    // std::cout << star.calcH(pt1) << std::endl;
-    cout<<"direct dis: "<<pt1->distance(pt2)<<endl;
-    star.print_path();
-    star_.print_path();
+  
+    Point* p1 = new Point(0,0);
+    Point* p2 = new Point(10,10);
+    Astar star(p1, p2, "./tests/TEST_MAP.csv");
+    star.ToOpenList(star.map_->findPoint(5,5));
+    star.ToOpenList(star.map_->findPoint(7,3));
+    star.map_->findPoint(5,5)->F = 1;
+    star.map_->findPoint(7,3)->F = 2;
+    Point* result = star.getLeastFpoint();
+  ***/
+    //Point* p2 = new Point(116.3110837, 39.9775838);
+    //Point* p1 = new Point(116.3105926, 39.9774053);
+    //Astar star(p2, p1, "./tests/s1.csv");
+    //star.map_->findPoint(10,10)->parent = star.map_->findPoint(7,3);
+    //star.map_->findPoint(7,3)->parent = star.map_->findPoint(5,5);
+    //star.map_->findPoint(5,5)->parent = star.map_->findPoint(0,0);
+    //star.print_path(star.findPath());
+
+    Point* p3 = new Point(116.2918073, 39.9730407);
+    Point* p4 = new Point(116.3934609, 39.8988716);
+    Astar star(p3, p4, "./DataLoader/shape.csv");
+    star.print_path(star.findPath());
+
     return 0;
 }
 

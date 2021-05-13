@@ -54,12 +54,14 @@ void MapDrawer::findEdgePoints(std::vector<Point*> points) {
     for (auto r: points) {
         if (r->x < minx) {
             minx = r->x;
-        } else if (r->x > maxx) {
+        } 
+        if (r->x > maxx) {
             maxx = r->x;
         }
         if (r->y < miny) {
             miny = r->y;
-        } else if (r->y > maxy) {
+        } 
+        if (r->y > maxy) {
             maxy = r->y;
         }
     }
@@ -93,7 +95,6 @@ void MapDrawer::drawMap(Point* p1, Point* p2) {
     canvas = new cs225::PNG(width, height);
     
     int size = cityMap->points.size();
-    std::cout << "Total points to draw: " << size << std::endl;
     int cnt = 0;
     int cnt2 = 1;
     for (auto p: cityMap->points) {
@@ -144,6 +145,9 @@ void MapDrawer::drawMapWithSolution(std::vector<Point*> points) {
     for (size_t i = 0; i < points.size() - 1; i++) {
         drawLine(points[i], points[i+1], color);
     }
+
+    drawBigPoint(points[0], 30, color);
+    drawBigPoint(points.back(), 30, color);
 }
 
 void MapDrawer::drawLine(Point* p1, Point* p2, Color color) {
@@ -156,6 +160,21 @@ void MapDrawer::drawLine(Point* p1, Point* p2, Color color) {
         drawHorizontalLine(c1, c2, color);
     } else {
         drawZigZags(c1, c2, color);  // draw slash line
+    }
+}
+
+void MapDrawer::drawBigPoint(Point* p1, int factor, MapDrawer::Color color) {
+    Cord cord = convertCord(p1);
+    double start_x = cord.x - int(factor / 2);
+    double start_y = cord.y - int(factor / 2);
+    for (int i = 0; i < factor; i++) {
+        for (int j = 0; j < factor; j++) {
+            cs225::HSLAPixel& pixel = canvas->getPixel(start_x + i, start_y + j);
+            pixel.h = color.h;
+            pixel.s = color.s;
+            pixel.l = color.l;
+            pixel.a = color.a;
+        }
     }
 }
 
