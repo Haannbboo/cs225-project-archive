@@ -21,6 +21,15 @@ The algorithm itself can be further imrpoved with the getpoints function. Curren
 Visualization of nearest points on s1 dataset
 --------------------------------------------
 
+    Point* p3 = new Point(116.3115702, 39.9746749);
+    Point* p4 = new Point(116.3128514, 39.9720423);
+    Dijkstra star(p3, p4, "./tests/s1.csv");
+    cout<<"the distance between points is: "<<p3->distance(p4);
+    for(size_t i = 0; i < star.road.size(); i++){
+         cout<<star.road[i]->x<<" "<<star.road[i]->y<<endl;
+    }
+    return 0;
+some points are tested, and the estimates are shown here.
 
 ## A* (Astar) algorithm
 
