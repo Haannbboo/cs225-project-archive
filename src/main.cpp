@@ -124,9 +124,12 @@ int main() {
     }
     //std::cout << m.incidentRoads(m.vertices.end()->first).size() << std::endl;
     ***/
-    Point* pt1 = new Point(116.3115702,39.9746749);
-    Point* pt2 = new Point(116.3117415, 39.9746731);
+    Point* pt1 = new Point(116.3119966, 39.9738962);
+    Point* pt2 = new Point(116.3103266, 39.9829572);
     Dijkstra star(pt1, pt2, "./tests/s1.csv");
+    Point* pt3 = new Point(116.3894407,39.9062721);
+    Point* pt4 = new Point(116.3894463,39.9060115);
+    Dijkstra star_(pt3, pt4, "./DataLoader/shape.csv");
    // std::vector<Road*> testt = star.getSurroundPoints(pt1);
     //std::cout << testt.size() << std::endl;
     // std::cout << star.map_->vertices.size() << std::endl;
@@ -140,6 +143,7 @@ int main() {
     // std::cout << star.calcH(pt1) << std::endl;
     cout<<"direct dis: "<<pt1->distance(pt2)<<endl;
     star.print_path();
+    star_.print_path();
     return 0;
 }
 
