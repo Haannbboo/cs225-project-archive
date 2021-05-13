@@ -58,6 +58,9 @@ A star algorithm is by far the most popular algorithm in finding the shortest pa
     }
     // Sum of G and H
  
+The time complexity of A* search depends on the heuristic functions. In our cases, it should be O(b^m) where heuristic is completely uninformative and he edge costs are all the same, just like BFS. The space complexity is also O(b^m) like BFS, A* maintains a frontier which grows with the size of the tree. 
+
+ 
 During the testing of our algorithm, we found out that weight is a really important factor in our algorithm design. Essentially, heurisitc search like A* is informed search. We found out that if we multiply the weight of H with a different factor, the result will totally different.
 
 ![image](factor5.png)
