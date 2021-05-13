@@ -22,11 +22,14 @@
     destination = map_->findPoint(destination ->x, destination ->y);
     start->best_estimate = 0;
     road.push_back(start);
+    //cout<<start_<<endl;
+    //cout<<"destination is "<<destination_<<endl;
     Point* cur = start; //initialize current point
     visited_points.push_back(cur);
     while(cur != destination){
         cur = findnearstpoint();
         cur->visited = true;
+        //cout<<cur->parent<<" ";
         // currentpoint->visited = true;
         visited_points.push_back(cur);
         road.push_back(cur);
@@ -49,6 +52,7 @@ Point* Dijkstra::findnearstpoint(){
                 //cout<<"best estimate: "<<point->best_estimate<<endl;
                     min = point->best_estimate;
                     minp = point;
+                    minp->parent = visit;
                 }
             }
             
@@ -60,7 +64,7 @@ Point* Dijkstra::findnearstpoint(){
     //   cout<<point<<endl;
     //}
     //cout<<"finish findnearest point"<<endl;
-    cout<<minp;
+    // cout<<minp;
     return minp;
 }
 
@@ -83,3 +87,14 @@ void Dijkstra::print_path(){
     }
 }
 
+// vector<Point*> Dijkstra::findpath(){
+//     vector<Point*> vec;
+//     vec.push_back(road[road.size()]);
+//     Point * prev = road[road.size()]->parent;
+//     vec.push_back(prev);
+//     // while(prev != start_){
+//     //     prev = prev->parent;
+//     //     vec.push_back(prev);
+//     // }
+//     return vec;
+// }
