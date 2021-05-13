@@ -42,16 +42,21 @@ A star algorithm is by far the most popular algorithm in finding the shortest pa
     	if (A->parent==nullptr) return R->length_;
     	else return A->parent->G + R->length_;
     }
+    
+    // Actual operating cost having been already traversed
+    
     double Astar::calcH(Point* A) 
     {
     	return destination_->distance(A)*1.33;
-    }; // this is equavilent to calculate distance between A and B;
+    };
+    
+    // Direct distance between A and B;
 
     double Astar::calcF(Road* road, Point* point) 
     {
     return calcG(point,road) + calcH(point);
     }
-
+    // Sum of G and H
  
 During the testing of our algorithm, we found out that weight is a really important factor in our algorithm design. Essentially, heurisitc search like A* is informed search. We found out that if we multiply the weight of H with a different factor, the result will totally different.
 
