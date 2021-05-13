@@ -26,7 +26,7 @@ Visualization of nearest points on s1 dataset
     Dijkstra star(p3, p4, "./tests/s1.csv");
     cout<<"the distance between points is: "<<p3->distance(p4);
     for(size_t i = 0; i < star.road.size(); i++){
-         cout<<star.road[i]->x<<" "<<star.road[i]->y<<endl;
+         cout<<star.road[i]->x<<" "<<star.road[i]->y<<star.road[i]->best_estimate<<endl;
     }
     return 0;
 some points are tested, and the estimates are shown here.
