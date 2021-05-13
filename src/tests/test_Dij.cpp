@@ -11,7 +11,7 @@ TEST_CASE("Find nearest point") {
     Point* p2 = new Point(10,10);
     Dijkstra dij(p1, p2, "./tests/TEST_MAP.csv");
     REQUIRE(dij.findnearstpoint()->x == (double) 0);
-    REQUIRE(dij.findnearstpoint()->y == (double) 0s);
+    REQUIRE(dij.findnearstpoint()->y == (double) 0);
     delete p1;
     delete p2;
 }
