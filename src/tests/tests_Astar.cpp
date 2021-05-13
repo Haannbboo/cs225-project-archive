@@ -22,7 +22,7 @@ TEST_CASE("TEST Constructor") {
 TEST_CASE("TEST getSurroundPoints") {
     Point* p1 = new Point(0,0);
     Point* p2 = new Point(10,10);
-    Astar star(p1, p2, "./tests/s1.csv");
+    Astar star(p1, p2, "./tests/TEST_MAP.csv");
     std::vector<Road*> test_road = star.getSurroundPoints(star.map_->findPoint(5,5));
     std::vector<int> test_vec = {3,5,8};
     std::vector<int> test_vec2;
@@ -34,9 +34,8 @@ TEST_CASE("TEST getSurroundPoints") {
     delete p2;
 }
 
-
 TEST_CASE("TEST calcH") {
-    double A = 1568520.5567985761;
+    double A = 2086132.3405421064;
     Point* p1 = new Point(0,0);
     Point* p2 = new Point(10,10);
     Astar star(p1, p2, "./tests/TEST_MAP.csv");
@@ -67,7 +66,6 @@ TEST_CASE("TEST IsInList with Point Input") {
     star.ToOpenList(star.map_->findPoint(5,5));
     star.ToOpenList(star.map_->findPoint(7,3));
     star.ToOpenList(star.map_->findPoint(10,10));
-    //Point* result = star.isInList(star.map_->findPoint(10,10));
     Point* result = star.isInList();
     REQUIRE(result->x == 10);
     REQUIRE(result->y == 10); 
@@ -89,26 +87,17 @@ TEST_CASE("TEST getLeastFPoint") {
     delete p1;
     delete p2;
 }
-/***
-TEST_CASE("findPath") {
 
-
-    REQUIRE());
-
-}
-***/
-
-/***
-TEST_CASE("getPath") {
+TEST_CASE("TEST getPath") {
     Point* p1 = new Point(0,0);
     Point* p2 = new Point(10,10);
     Astar star(p1, p2, "./tests/TEST_MAP.csv");
-    star.ToPath(star.map_->findPoint(5,5));
-    star.ToPath(star.map_->findPoint(7,3));
-    star.map_->findPoint(10,10)->parent = star.map_->findPoint(7,3);
-    star.map_->findPoint(7,3)->parent = star.map_->findPoint(5,5);
-    star.map_->findPoint(5,5)->parent = star.map_->findPoint(0,0);
+    Point* result = star.findPath();
+    REQUIRE(result->parent == star.map_->findPoint(5,5));
 
-    REQUIRE();
+    result = result->parent;
+    REQUIRE(result->parent == star.map_->findPoint(0,0));
+
+    result = result->parent;
+    REQUIRE(result->parent == nullptr); 
 }
-***/

@@ -22,7 +22,7 @@ double Astar::calcG(Point* A, Road* R) {
 }
 
 double Astar::calcH(Point* A) {
-    return destination_->distance(A)*2;
+    return destination_->distance(A)*1.33;
 }; // this is equavilent to calculate distance between A and B;
 
 double Astar::calcF(Road* road, Point* point) 
@@ -37,41 +37,41 @@ Point* Astar::findPath()
      while (!openList.empty()) 
      { 
          Point* curPoint=getLeastFpoint();
-         std::cout << "curPoint Position" << curPoint->x << "|" << curPoint->y << std::endl;
-         std::cout << "Get The Least F Point" << std::endl;
+         //std::cout << "curPoint Position" << curPoint->x << "|" << curPoint->y << std::endl;
+         //std::cout << "Get The Least F Point" << std::endl;
          openList.remove(curPoint);
-         std::cout << "Remove curPoint from openList" << std::endl;
+         //std::cout << "Remove curPoint from openList" << std::endl;
          closeList.push_back(curPoint);
-         std::cout << "Push curPoint to the closeList" << std::endl;
+         //std::cout << "Push curPoint to the closeList" << std::endl;
          std::vector<Road*> surroundPoints= getSurroundPoints(curPoint);
          if (surroundPoints.empty()) continue;
          for (Road* r :surroundPoints) 
          { 
-             std::cout << "Road id: " << r->id_ << std::endl; 
+             //std::cout << "Road id: " << r->id_ << std::endl; 
              if (isInCloseList(r->otherSide(curPoint))) continue;
              else if (!isInList(r->otherSide(curPoint))) 
              { 
-                 std::cout << "In Open List" << std::endl;
-                 std::cout << "Next Point" << r->otherSide(curPoint)->x << "|" << r->otherSide(curPoint)->y << std::endl;
+                 //std::cout << "In Open List" << std::endl;
+                 //std::cout << "Next Point" << r->otherSide(curPoint)->x << "|" << r->otherSide(curPoint)->y << std::endl;
                  r->otherSide(curPoint)->parent=curPoint;
-                 std::cout << "Child: " << r->otherSide(curPoint)->x << " | "<<r->otherSide(curPoint)->y << std::endl;
-                 std::cout << "Parent: " << curPoint->x << " | " << curPoint->y << std::endl;
+                 //std::cout << "Child: " << r->otherSide(curPoint)->x << " | "<<r->otherSide(curPoint)->y << std::endl;
+                 //std::cout << "Parent: " << curPoint->x << " | " << curPoint->y << std::endl;
 
                  r->otherSide(curPoint)->F = calcF(r,r->otherSide(curPoint));
-                 std::cout << "F: " << calcF(r,r->otherSide(curPoint)) << std::endl;
+                 //std::cout << "F: " << calcF(r,r->otherSide(curPoint)) << std::endl;
 
                  r->otherSide(curPoint)->G = calcG(r->otherSide(curPoint), r);
-                 std::cout << "G: " << calcG(r->otherSide(curPoint),r) << std::endl;
+                 //std::cout << "G: " << calcG(r->otherSide(curPoint),r) << std::endl;
 
                  r->otherSide(curPoint)->H = calcH(r->otherSide(curPoint));
-                 std::cout << "H: " << calcH(r->otherSide(curPoint)) << std::endl;
+                 //std::cout << "H: " << calcH(r->otherSide(curPoint)) << std::endl;
 
                  openList.push_back(r->otherSide(curPoint)); 
              } 
              else 
              { 
                  int tempG=calcG(curPoint,r); 
-                 std::cout << "tempG" << tempG << std::endl;
+                 //std::cout << "tempG" << tempG << std::endl;
                  if (tempG< (r->otherSide(curPoint)->G) ) 
                  { 
                      r->otherSide(curPoint)->parent=curPoint; 
