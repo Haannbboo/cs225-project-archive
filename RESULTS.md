@@ -18,7 +18,8 @@ The current algorithm can only tell the shortest estimate of one point to anothe
 The algorithm itself can be further imrpoved with the getpoints function. Currently everytime getpoints function is called it will try to clear all connected points of a point and add them again according to the status of the point (visited or not). Due to the point struct, this is still in progress.
 
 ![image](dddd.png)
-
+Visualization of nearest points on s1 dataset
+--------------------------------------------
 
 
 ## A* (Astar) algorithm
