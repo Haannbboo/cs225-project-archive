@@ -13,7 +13,7 @@ The data downloaded from OSM is in .shp format, which has been converted to a re
 
 # Graph Algorithms
 
-Apart from Dijkstra algorithm, we want to implement other algorithms includingD*, LPA*, and D* lite. There are two important data structures and conversion of data in our program. The first one is to translate the data in the .csv table into a data structure that holds the processed roads’ information. This data structure can generate the input data structure for the algorithms, such as adjacency matrix. The second is to use pre-processed data in the algorithms to generate the final result, which is the route from point A to point B and will be represented as a node-edge-node connection array. We want to implement the following algorithms: Dijkstra algorithm, A* algorithm, D* algorithm, and LPA* algorithm.
+Apart from Dijkstra algorithm, we want to implement other algorithms including D* and A*. There are two important data structures and conversion of data in our program. The first one is to translate the data in the .csv table into a data structure that holds the processed roads’ information. This data structure can generate the input data structure for the algorithms, such as adjacency matrix. The second is to use pre-processed data in the algorithms to generate the final result, which is the route from point A to point B and will be represented as a node-edge-node connection array. We want to implement the following algorithms: Dijkstra algorithm, A* algorithm, D* algorithm.
 
 Dijkstra algorithm implements the greedy pattern. The complexity is O(|E|) where E is the number of edges.
 
