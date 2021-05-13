@@ -14,11 +14,11 @@ This part has the functionality of translating csv file into std::string that ca
 
 2. data
 
-A map is composed of single points as each location and each road is defined by two points (including points in the middle of the road). Therefore, the data folder has the functionality of processing csv file into our defined class: Point, Road, and Map. Each of these class has different kinds of functionalities to be used in our algorithm designs. The data folder also has the MapDrawer function that used the class developed by CS225 faulties and we have used this function throughout our CS225 class. By using this class, we are able to draw the map of Beijing and to visualize our result. 
+The data folder has the functionality of processing csv file into our defined class: ```Point```, ```Road```, and ```Map```. A ```Map``` stores ```Point```s (geo coordinates) of all ```Road``` within Beijing and each ```Road``` is defined by two ```Point```s. Most APIs used in algorithms are provided in ```Map```, supported by private methods in ```Road``` and ```Point```. The data folder also has the ```MapDrawer``` class that uses the ```PNG``` and ```HSLAPixel``` developed by CS225 faulties to draw the map of Beijing and to visualize output of graph algorithms. 
  
 3. cs225
 
-Visualization class developed by CS225 fauclties. 
+Visualization class and catch files developed by CS225 fauclties. 
 
 4. algorithms
 
